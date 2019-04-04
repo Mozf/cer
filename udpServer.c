@@ -49,6 +49,7 @@ int main()
     {
         memset(buf,0,sizeof(buf));
         //收
+        printf("prepare recv\n");
         tmp = recvfrom(sockfd,buf,sizeof(buf),0,(struct sockaddr *)&peer_addr,(socklen_t *)&addrLen);
         if(tmp<0)
             perror("socket recv error! \n");
