@@ -27,32 +27,45 @@ int main()
     //1 创建socket文件
     int sockfd = socket(AF_INET6,SOCK_DGRAM,0);
     if(sockfd < 0)
+    {
         perror("socket creat error! \n");
-
+    }
+    else
+    {
+        printf("socket successful\n");
+    }
     //2 绑定(标识自己在网络上的名字)
     tmp = bind(sockfd,(struct sockaddr *)&server_addr,sizeof(server_addr));
-    if(-1 == tmp)
+    if(tmp<0)
+    {
         perror("socket bind error! \n");
+    }
+    else
+    {
+        printf("bind successful\n");
+    }
     //3 收/发
     while(1)
     {
         memset(buf,0,sizeof(buf));
         //收
         tmp = recvfrom(sockfd,buf,sizeof(buf),0,(struct sockaddr *)&peer_addr,(socklen_t *)&addrLen);
-        if(-1 == tmp)
+        if(tmp<0)
             perror("socket recv error! \n");
         else
         {
+            printf("recv successful\n");
 //            printf("recv from ip is = %s,port is = %d\n",inet_ntoa(peer_addr.sin6_addr),ntohs(peer_addr.sin6_port));
             printf("recv buf is = %s\n",buf);
         }
 
         //发
+/*
         strcpy(buf,"I have recv your message successful!\n");
         tmp = sendto(sockfd,buf,strlen(buf),0,(struct sockaddr *)&peer_addr,addrLen);
         if(-1 == tmp)
             perror("socket send error! \n");
-
+*/
     }
 	
 	close(sockfd);
