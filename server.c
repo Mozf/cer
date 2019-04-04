@@ -6,7 +6,7 @@
 #include <netinet/ip.h> /* superset of previous */
 #include <sys/stat.h>
 #include <fcntl.h>
-#include <netdb.h>
+
 struct Data{
     int len;
     char buf[1024];
@@ -14,14 +14,13 @@ struct Data{
 
 int main()
 {
-#ifdef R
     //1 创建socket
     int sockfd = socket(AF_INET6,SOCK_STREAM,0);
     //* bind
     struct sockaddr_in6 server_addr;
     server_addr.sin6_family = AF_INET6;
     server_addr.sin6_port = htons(8888);
-    if (inet_pton(AF_INET6,"2409:8955:c98:4c9f:20c:29ff:fe07:3025", &server_addr.sin6_addr) < 0 ) 
+    if (inet_pton(AF_INET6,"2409:8955:c90:8dc0:20c:29ff:fe07:3025", &server_addr.sin6_addr) < 0 ) 
     {                 // IPv6
         perror("inet_pton err");
         return -1;
@@ -31,25 +30,6 @@ int main()
     bind(sockfd,(struct sockaddr*)&server_addr,sizeof(server_addr));
     //2 listen 让服务器socket进入监听状态（只有进入监听状态才能接受链接）
     //           参数二 表示 同时允许的最大的 正在链接 的客户端数量
-#else
-    struct sockaddr_in6 from;
-    struct addrinfo req, *ans;
-    int code,sockfd, len;
-    req.ai_flags = AI_PASSIVE;     
-    req.ai_family = PF_INET6;
-    req.ai_socktype = SOCK_STREAM;
-    req.ai_protocol = 0;
-    if ((code = getaddrinfo("2001:da8:2018:1001:20c:29ff:fe07:3025", "8888", &req, &ans)) != 0) {
-        fprintf(stderr, "rlogind: getaddrinfo failed code %d\n",
-            code);
-        exit(-1);
-    }
-    sockfd = socket(ans->ai_family, ans->ai_socktype, ans->ai_protocol);
-    if (bind(sockfd, ans->ai_addr, ans->ai_addrlen) < 0) {
-        perror("bind err");
-        exit(-1);
-    }
-#endif
     listen(sockfd,10);
     //3 accept
     while(1)
@@ -108,11 +88,6 @@ int main()
     //
 
     //4 close
-
-#ifdef R
     close(sockfd);
-#else
-    freeaddrinfo(ans);
-#endif
     return 0;
 }
