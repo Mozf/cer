@@ -19,8 +19,8 @@ int main()
     //* bind
     struct sockaddr_in6 server_addr;
     server_addr.sin6_family = AF_INET6;
-    server_addr.sin6_port = htons(8888);
-    if (inet_pton(AF_INET6,"2409:8955:c90:8dc0:20c:29ff:fe07:3025", &server_addr.sin6_addr) < 0 ) 
+    server_addr.sin6_port = htons(5670);
+    if (inet_pton(AF_INET6,"2001:da8:270:2018:f816:3eff:fe40:d788", &server_addr.sin6_addr) < 0 )
     {                 // IPv6
         perror("inet_pton err");
         return -1;
