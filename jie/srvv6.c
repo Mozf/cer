@@ -24,7 +24,7 @@ int main(int argc, char **argv)
 	bzero(&servaddr, sizeof(servaddr));
 	servaddr.sin6_family = AF_INET6;
 	servaddr.sin6_addr   = in6addr_any;
-	servaddr.sin6_port   = htons(13);	/* daytime server */
+	servaddr.sin6_port   = htons(5670);	/* daytime server */
 
 	if (bind(listenfd, (struct sockaddr *) &servaddr, sizeof(servaddr)) == -1) {
     perror("failed!\n");
