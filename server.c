@@ -6,6 +6,7 @@
 #include <netinet/ip.h> /* superset of previous */
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <arpa/inet.h>
 
 struct Data{
     int len;
