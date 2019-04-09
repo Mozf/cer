@@ -72,7 +72,7 @@ int main(int argc,const char * argv[])
     req.ai_socktype = SOCK_STREAM;
     req.ai_protocol = 0;
     printf("0\n");
-    if ((code = getaddrinfo("2409:8954:c84:9355:cd80:3204:3b4e:b21e", "8888", &req, &ans)) != 0) {
+    if ((code = getaddrinfo("2001:da8:270:2018:f816:3eff:fe40:d788", "5670", &req, &ans)) != 0) {
         fprintf(stderr, "rlogin: getaddrinfo failed code %d\n",
             code);
         return -1;
