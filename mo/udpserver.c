@@ -46,8 +46,7 @@ int main(int argc, char **argv)
  
 	addr_len = sizeof(c_addr);
 	while (1) {
-		len = recvfrom(sock, buff, sizeof(buff) - 1, 0,
-					   (struct sockaddr *) &c_addr, &addr_len);
+		len = recvfrom(sock, buff, sizeof(buff) - 1, 0,(struct sockaddr *) &c_addr, &addr_len);
 		if (len < 0) {
 			perror("recvfrom");
 			exit(errno);
@@ -55,8 +54,7 @@ int main(int argc, char **argv)
  
 		buff[len] = '\0';
 		printf("receive from %s: buffer:%s\n\r",
-				inet_ntop(AF_INET6, &c_addr.sin6_addr, buf_ip, sizeof(buf_ip)), 
-				buff);
+			inet_ntop(AF_INET6, &c_addr.sin6_addr, buf_ip, sizeof(buf_ip)), buff);
 	}
 	return 0;
 }

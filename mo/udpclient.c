@@ -38,8 +38,7 @@ int main(int argc, char **argv)
  
 	addr_len = sizeof(s_addr);
 	strcpy(buff, "hello i'm here");
-	len = sendto(sock, buff, strlen(buff), 0,
-				 (struct sockaddr *) &s_addr, addr_len);
+	len = sendto(sock, buff, strlen(buff), 0,(struct sockaddr *) &s_addr, addr_len);
 	if (len < 0) {
 		printf("\n\rsend error.\n\r");
 		return 3;
