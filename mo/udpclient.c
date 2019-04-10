@@ -24,7 +24,7 @@ int main(int argc, char **argv)
 		printf("create socket.\n\r");
  
 	s_addr.sin6_family = AF_INET6;
-	s_addr.sin6_port = htons(5683);
+	s_addr.sin6_port = htons(3366);
  
 	inet_pton(AF_INET6, argv[1], &s_addr.sin6_addr);
  
