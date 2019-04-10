@@ -27,16 +27,8 @@ int main(int argc, char **argv)
  
 	memset(&s_addr, 0, sizeof(struct sockaddr_in6));
 	s_addr.sin6_family = AF_INET6;
- 
-	if (argv[2])
-		s_addr.sin6_port = htons(atoi(argv[2]));
-	else
-		s_addr.sin6_port = htons(5683);
- 
-	if (argv[1])
-		inet_pton(AF_INET6, argv[1], &s_addr.sin6_addr);
-	else
-		s_addr.sin6_addr = in6addr_any;
+	s_addr.sin6_port = htons(5683);
+	s_addr.sin6_addr = in6addr_any;
  
 	if ((bind(sock, (struct sockaddr *) &s_addr, sizeof(s_addr))) == -1) {
 		perror("bind");

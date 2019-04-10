@@ -24,17 +24,9 @@ int main(int argc, char **argv)
 		printf("create socket.\n\r");
  
 	s_addr.sin6_family = AF_INET6;
-	if (argv[2])
-		s_addr.sin6_port = htons(atoi(argv[2]));
-	else
-		s_addr.sin6_port = htons(5683);
+	s_addr.sin6_port = htons(5683);
  
-	if (argv[1])
-		inet_pton(AF_INET6, argv[1], &s_addr.sin6_addr);
-	else {
-		printf("usage:./command ip port\n");
-		exit(0);
-	}
+	inet_pton(AF_INET6, 2001:da8:270:2018:f816:3eff:fe40:d788, &s_addr.sin6_addr);
  
 	addr_len = sizeof(s_addr);
 	strcpy(buff, "hello i'm here");
