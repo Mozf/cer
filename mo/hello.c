@@ -1,4 +1,4 @@
 #include <stdio.h>
 void main(){
-	pirintf("Hello word!!\n");
+	pirintf("Hello word!!git\n");
 }
