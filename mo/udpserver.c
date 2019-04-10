@@ -31,7 +31,7 @@ int main(int argc, char **argv)
 	if (argv[2])
 		s_addr.sin6_port = htons(atoi(argv[2]));
 	else
-		s_addr.sin6_port = htons(65500);
+		s_addr.sin6_port = htons(5683);
  
 	if (argv[1])
 		inet_pton(AF_INET6, argv[1], &s_addr.sin6_addr);
