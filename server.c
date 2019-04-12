@@ -20,7 +20,7 @@ int main()
     struct sockaddr_in6 server_addr;
     server_addr.sin6_family = AF_INET6;
     server_addr.sin6_port = htons(8888);
-    if (inet_pton(AF_INET6,"2409:8955:c90:8dc0:20c:29ff:fe07:3025", &server_addr.sin6_addr) < 0 ) 
+    if (inet_pton(AF_INET6,"2409:8955:ce0:3a14:20c:29ff:fe07:3025", &server_addr.sin6_addr) < 0 ) 
     {                 // IPv6
         perror("inet_pton err");
         return -1;
@@ -47,6 +47,18 @@ int main()
             printf("new_sockfd = %d\n",new_sockfd);
             //2 recv
             struct Data data;
+            struct Data cli_to_ser;
+            int res_clitoser=recv(new_sockfd,&cli_to_ser,sizeof(cli_to_ser),0);
+            if(res_clitoser<0)
+            {
+                perror("recv file from client err:");
+                return -1;
+            }
+            else
+            {
+                printf("recv buff from client success\n");
+                printf("recv buff is %s\n",cli_to_ser.buf);
+            }
             int res = recv(new_sockfd,&data,sizeof(data),0);
             if(res < 0)
             {

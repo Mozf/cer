@@ -51,8 +51,8 @@ int main(int argc,const char * argv[])
     //2 向服务器请求链接
     struct sockaddr_in6 server_addr;
     server_addr.sin6_family = AF_INET6;
-    server_addr.sin6_port = htons(8889);
-    if (inet_pton(AF_INET6,"2001:da8:270:2018:f816:3eff:fe40:d788", &server_addr.sin6_addr) < 0 ) 
+    server_addr.sin6_port = htons(8888);
+    if (inet_pton(AF_INET6,"2409:8955:ce0:3a14:20c:29ff:fe07:3025", &server_addr.sin6_addr) < 0 ) 
     {                 // IPv6
         perror("inet_pton err");
         return -1;
@@ -63,11 +63,45 @@ int main(int argc,const char * argv[])
     if(connect(sockfd,(struct sockaddr *)&server_addr,sizeof(server_addr))<0)
     {
     	perror("connect err");
+        return -1;
     }
     printf("123\n");
     //2 send 请求数据
     struct Data data;
-    memset(&data, 0, sizeof(data));
+    struct Data cli_to_ser;
+    memset(&data, 0, sizeof(data));  
+    memset(&cli_to_ser, 0, sizeof(data));
+    
+    int fd_clitoser = open("cli_to_ser.txt",O_RDONLY | O_CREAT,777);
+    if(fd_clitoser<0)
+    {
+        perror("fd_clitoser err:");
+        return -1;
+    }
+    printf("fd_clitoser is %d\n",fd_clitoser);
+    int read_len=read(fd_clitoser,cli_to_ser.buf,sizeof(cli_to_ser.buf));
+    if(read_len<0)
+    {
+        perror("read err:");
+        return -1;
+    }
+    else
+    {
+        printf("read file cli_to_ser.txt len is %d\n",read_len);
+    }
+    cli_to_ser.len=strlen(cli_to_ser.buf);
+    printf("cli_to_ser.len is %d\n",cli_to_ser.len);
+    int res_sendfiletoser=send(sockfd,&cli_to_ser,sizeof(cli_to_ser),0);
+    if(res_sendfiletoser<0)
+    {
+        perror("send file to ser err:");
+        return -1;
+    }
+    else
+    {
+        printf("send file to server is successful!!!!!!\n");
+        printf("=========================================\n");
+    }
     strcpy(data.buf,argv[1]);
     data.len = strlen(data.buf);
     //int res = send(sockfd,&data, data.len + sizeof(data.len) ,0);
