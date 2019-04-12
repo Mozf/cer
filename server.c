@@ -6,7 +6,6 @@
 #include <netinet/ip.h> /* superset of previous */
 #include <sys/stat.h>
 #include <fcntl.h>
-#include <arpa/inet.h>
 
 struct Data{
     int len;
@@ -20,13 +19,8 @@ int main()
     //* bind
     struct sockaddr_in6 server_addr;
     server_addr.sin6_family = AF_INET6;
-<<<<<<< HEAD
     server_addr.sin6_port = htons(8888);
     if (inet_pton(AF_INET6,"2409:8955:ce0:3a14:20c:29ff:fe07:3025", &server_addr.sin6_addr) < 0 ) 
-=======
-    server_addr.sin6_port = htons(5670);
-    if (inet_pton(AF_INET6,"2001:da8:270:2018:f816:3eff:fe40:d788", &server_addr.sin6_addr) < 0 )
->>>>>>> 4df8953d75a9fcd985ebfdb50e819391f5477cbf
     {                 // IPv6
         perror("inet_pton err");
         return -1;
