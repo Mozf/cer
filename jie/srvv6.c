@@ -40,12 +40,23 @@ int main(int argc, char **argv)
     if (connfd == -1) {
       perror("accept failed!\n");
     }
-	//	printf("connection from %s\n",
-	//	sock_ntop((struct sockaddr *) &cliaddr, len));
+		//	printf("connection from %s\n",
+		//	sock_ntop((struct sockaddr *) &cliaddr, len));
 
-        ticks = time(NULL);
-        snprintf(buff, sizeof(buff), "%.24s\r\n", ctime(&ticks));
-        write(connfd, buff, strlen(buff));
+		//ticks = time(NULL);
+		snprintf(buff, sizeof(buff), "%.24d\r\n","momo");
+		write(connfd, buff, strlen(buff));
+
+		int n;
+		char recvline[MAXLINE + 1];
+		while ( (n = read(connfd, recvline, MAXLINE)) > 0) {
+		recvline[n] = 0;	/* null terminate */
+		if (fputs(recvline, stdout) == EOF) {
+      perror("fputs failed!\n");
+    }
+	}
+	if (n < 0)
+		perror("failed!\n");
 
 		close(connfd);
 	}
