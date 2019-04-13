@@ -50,14 +50,16 @@ int main(int argc, char **argv)
 		int n;
 		char recvline[MAXLINE + 1];
 		while ( (n = read(connfd, recvline, MAXLINE)) > 0) {
-		recvline[n] = 0;	/* null terminate */
-		if (fputs(recvline, stdout) == EOF) {
-      perror("fputs failed!\n");
-    }
-	}
-	if (n < 0)
-		perror("failed!\n");
+			recvline[n] = 0;	/* null terminate */
+			if (fputs(recvline, stdout) == EOF) {
+				perror("fputs failed!\n");
+			}
+		}
 
+		if (n < 0) {
+			perror("failed!\n");
+		}
+		
 		close(connfd);
 	}
 }

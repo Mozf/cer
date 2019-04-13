@@ -15,10 +15,10 @@ main(int argc, char **argv)
 	struct sockaddr_in6	servaddr;
 	char				recvline[MAXLINE + 1];
 
-	if (argc != 2) {
-    printf("usage: a.out <IPaddress>");
-    exit(-1);
-  }
+	//if (argc != 2) {
+   // printf("usage: a.out <IPaddress>");
+  //  exit(-1);
+  //}
 		
 
 	if ( (sockfd = socket(AF_INET6, SOCK_STREAM, 0)) < 0) {
@@ -27,7 +27,7 @@ main(int argc, char **argv)
 
 	bzero(&servaddr, sizeof(servaddr));
 	servaddr.sin6_family = AF_INET6;
-	servaddr.sin6_port   = htons(13);	/* daytime server */
+	servaddr.sin6_port   = htons(5670);	/* daytime server */
 	if (inet_pton(AF_INET6,"2001:da8:270:2018:f816:3eff:fe40:d788", &servaddr.sin6_addr) <= 0) {
     perror("inet_pton failed!\n");
   }
@@ -36,19 +36,19 @@ main(int argc, char **argv)
     perror("connect failed!\n");
   }
 
+	char				buff[MAXLINE];
+	snprintf(buff, sizeof(buff), "%.24s\r\n","qqqqq");
+	write(sockfd, buff, strlen(buff));
+
 	while ( (n = read(sockfd, recvline, MAXLINE)) > 0) {
 		recvline[n] = 0;	/* null terminate */
 		if (fputs(recvline, stdout) == EOF) {
       perror("fputs failed!\n");
     }
+		exit(0);
 	}
 	if (n < 0)
 		perror("failed!\n");
 
-	char				buff[MAXLINE];
 	
-	snprintf(buff, sizeof(buff), "%.24d\r\n","qqqqq");
-	write(sockfd, buff, strlen(buff));
-
-	exit(0);
 }
