@@ -22,6 +22,7 @@
 
 ±‡“Î£∫
 gcc  -L/usr/local/MATLAB/R2015b/bin/glnxa64 -I//usr/local/MATLAB/R2015b/extern/include demo.c -o demo -lmat -lmx -leng -Wl,-rpath=/usr/local/MATLAB/R2015b/bin/glnxa64
+gcc  -L/work/matlab2016/bin/glnxa64 -I//work/matlab2016/extern/include demo.c -o demo -lmat -lmx -leng -Wl,-rpath=/work/matlab2016/bin/glnxa64
 ‘À––./demo
 level£∫0403
 

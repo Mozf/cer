@@ -37,8 +37,8 @@ main(int argc, char **argv)
   }
 
 	char				buff[MAXLINE];
-	snprintf(buff, sizeof(buff), "%.24s\r\n","qqqqq");
-	write(sockfd, buff, strlen(buff));
+	//snprintf(buff, sizeof(buff), "%.24s\r\n","qqqqq");
+	//write(sockfd, buff, strlen(buff));
 
 	while ( (n = read(sockfd, recvline, MAXLINE)) > 0) {
 		recvline[n] = 0;	/* null terminate */

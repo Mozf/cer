@@ -10,8 +10,7 @@
 
 #define MAXLINE 1024
 
-int
-main(int argc, char **argv)
+int main(int argc, char **argv)
 {
 	int					sockfd, n;
 	struct sockaddr_in6	servaddr;
