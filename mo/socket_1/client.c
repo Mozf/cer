@@ -28,7 +28,7 @@ int main(int argc, char **argv)
 	bzero(&servaddr, sizeof(servaddr));
 	servaddr.sin6_family = AF_INET6;
 	servaddr.sin6_port   = htons(5670);	/* daytime server */
-	if (inet_pton(AF_INET6, argv[1], &servaddr.sin6_addr) <= 0) {
+	if (inet_pton(AF_INET6, "2001:da8:270:2018:f816:3eff:fe40:d788", &servaddr.sin6_addr) <= 0) {
     perror("inet_pton failed!\n");
   }
 
