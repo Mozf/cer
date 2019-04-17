@@ -1,0 +1,80 @@
+#include	<time.h>
+#include <sys/types.h>   /* See NOTES */
+#include <sys/socket.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include <arpa/inet.h>
+#define MAXLINE 1024
+
+int main(int argc, char **argv)
+{
+	int					listenfd, connfd;
+	socklen_t			len;
+	char				buff[MAXLINE];
+	time_t				ticks;
+	struct sockaddr_in6	servaddr, cliaddr;
+
+	listenfd = socket(AF_INET6, SOCK_STREAM, 0);
+  if (listenfd == -1) {
+    perror("socket failed!\n");
+  }
+
+	bzero(&servaddr, sizeof(servaddr));
+	servaddr.sin6_family = AF_INET6;
+	servaddr.sin6_addr   = in6addr_any;
+	servaddr.sin6_port   = htons(5670);	/* daytime server */
+
+	if (bind(listenfd, (struct sockaddr *) &servaddr, sizeof(servaddr)) == -1) {
+    perror("failed!\n");
+  }
+
+	if (listen(listenfd, 5) == -1) {
+    perror("failed!\n");
+  }
+
+	for ( ; ; ) {
+		len = sizeof(cliaddr);
+		connfd = accept(listenfd, (struct sockaddr *) &cliaddr, &len);
+    if (connfd == -1) {
+      perror("accept failed!\n");
+    }
+		//	printf("connection from %s\n",
+		//	sock_ntop((struct sockaddr *) &cliaddr, len));
+    /*
+		//ticks = time(NULL);
+		snprintf(buff, sizeof(buff), "%.24s\r\n","momo");
+		write(connfd, buff, strlen(buff));
+
+		int n;
+		char recvline[MAXLINE + 1];
+		while ( (n = read(connfd, recvline, MAXLINE)) > 0) {
+		recvline[n] = 0;	// null terminate 
+    //printf("%s",recvline);
+		if (fputs(recvline, stdout) == EOF) {
+      perror("fputs failed!\n");
+    }
+	}*/
+  //snprintf(buff, sizeof(buff), "%.24s\r\n","momo");
+  //write(connfd, buff, strlen(buff));
+   // bzero(buff,MAXLINE + 1);
+   // strcpy(buff,"momosr");
+   // len = send(connfd,buff,strlen(buff),0);
+    printf("1");
+    bzero(buff,MAXLINE + 1);
+      len = recv(connfd,buff,4,MSG_WAITALL);
+      printf("%s",buff);
+   printf("read");       
+
+    //bzero(buff,MAXLINE + 1);
+      //strcpy(buff,"momosr");
+    //len = send(connfd,buff,strlen(buff),0);
+    //printf("send");
+
+	  //if (n < 0)
+		  //perror("failed!\n");
+  
+	  close(connfd);
+	}
+}
