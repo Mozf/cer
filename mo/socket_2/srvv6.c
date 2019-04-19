@@ -6,19 +6,20 @@
 #include <unistd.h>
 #include <string.h>
 #include <arpa/inet.h>
+#include <stdlib.h>
 
 #define MAXLINE 1024
 
 int main(int argc, char **argv){
 
 	int	        listenfd, connfd;
-	char 				buff[MAXLINE + 1];
+	char 				buff_1[MAXLINE + 1], buff_2[MAXLINE + 1] ;
 	time_t			ticks;
 	socklen_t		len;
 	
 	struct sockaddr_in6	servaddr, cliaddr;
 
-  if (listenfd = socket(AF_INET6, SOCK_STREAM, 0) == -1) {
+  if ((listenfd = socket(AF_INET6, SOCK_STREAM, 0)) == -1) {
     perror("socket failed!\n");
 		exit(1);
   }
@@ -51,7 +52,7 @@ int main(int argc, char **argv){
 
 		len = sizeof(cliaddr);
 
-    if (connfd = accept(listenfd, (struct sockaddr *) &cliaddr, &len) == -1) {
+    if ((connfd = accept(listenfd, (struct sockaddr *) &cliaddr, &len)) == -1) {
       perror("accept failed!\n");
 			exit(1);
     }
@@ -59,24 +60,21 @@ int main(int argc, char **argv){
 			printf("accept\n");
 		}
 
-    bzero(buff,MAXLINE + 1);
-    if(len = recv(connfd,buff,strlen(buff),MSG_WAITALL) == -1) {
+    if(len = recv(connfd,buff_1,strlen(buff_1),0) == -1) {
 			perror("recv failed!\n");
 		}
 		else {
-			printf("%s\n",buff);
+			printf("%s\n",buff_1);
 		}
-
-		bzero(buff,MAXLINE + 1);
-		strcpy(buff, "这是server发给client的消息\n");
-    if (len = send(connfd, buff, strlen(buff), 0) == -1) {
+   
+		strcpy(buff_2, "这是server发给client的消息1\n");
+    if (len = send(connfd, buff_2, strlen(buff_2), 0) == -1) {
 			perror("send failed!\n");
 		}
 		else {
 			printf("send\n");
 		}
-
-	  close(connfd);
-		return 0;
-	}
+  }
+	close(connfd);
+	return 0;
 }
