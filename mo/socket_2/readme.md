@@ -1,1 +1,1 @@
-这个是用来测试tcp功能的
+这个socket程序可以完成client传送一个字符串给server，之后server传送一个字符串回来的功能
