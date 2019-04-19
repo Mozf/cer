@@ -13,7 +13,7 @@
 int main(int argc, char **argv)
 {
 	int			sockfd, n;
-	char		ecvline[MAXLINE + 1], buff[MAXLINE + 1];
+	char		buff_1[MAXLINE + 1], buff_2[MAXLINE + 1];
 
 	struct sockaddr_in6	servaddr;
 	
@@ -45,44 +45,20 @@ int main(int argc, char **argv)
 			printf("connect\n");
 		}
 
-	bzero(buff,MAXLINE + 1);
-	strcpy(buff, "这是client发给server的消息\n");
-	if( n = send(sockfd,buff,strlen(buff),0) < 0) {
+	memset(buff_1, 0, sizeof(buff_1));
+	strcpy(buff_1, "这是client发给server的消息2\n");
+	if( n = send(sockfd,buff_1,sizeof(buff_1),0) < 0) {
 		perror("connect failed!\n");
 	}
-	else printf("%s\n",buff);
+	else printf("send already\n");
 
-	bzero(buff,MAXLINE + 1);
-	if(n = recv(sockfd,buff,strlen(buff),MSG_WAITALL) == -1) {
+	if(n = recv(sockfd,buff_2,sizeof(buff_2),0) == -1) {
 		perror("recv failed!\n");
 	}
 	else {
-		printf("%s\n",buff);
+		printf("%s\n",buff_2);
 	}
-
-
-	//bzero(buff,1025);
-  //n = recv(sockfd,buff,MAXLINE,0);
-  //if(n>0) printf("%s",buff);
-  //else printf("errno");
 
 	close(sockfd);
-
 	return 0;
-	//snprintf(buff, sizeof(buff), "%.24s\r\n","qqqqq");
-	//write(sockfd, buff, strlen(buff));
-	/*printf("123");
-	while ( (n = read(sockfd, recvline, MAXLINE)) > 0) {
-		recvline[n] = 0;	 null terminate 
-		if (fputs(recvline, stdout) == EOF) {
-      perror("fputs failed!\n");
-    }
-		exit(0);
-	}
-	snprintf(buff, sizeof(buff), "%.24s\r\n","qqqqq");
- write(sockfd, buff, strlen(buff));
-	if (n < 0)
-		perror("failed!\n");*/
-//
-	
 }

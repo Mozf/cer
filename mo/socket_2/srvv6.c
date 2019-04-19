@@ -60,15 +60,16 @@ int main(int argc, char **argv){
 			printf("accept\n");
 		}
 
-    if(len = recv(connfd,buff_1,strlen(buff_1),0) == -1) {
+    if(len = recv(connfd,buff_1,sizeof(buff_1),0) == -1) {
 			perror("recv failed!\n");
 		}
 		else {
 			printf("%s\n",buff_1);
 		}
    
+	 	memset(buff_2, 0, sizeof(buff_2));
 		strcpy(buff_2, "这是server发给client的消息1\n");
-    if (len = send(connfd, buff_2, strlen(buff_2), 0) == -1) {
+    if (len = send(connfd, buff_2, sizeof(buff_2), 0) == -1) {
 			perror("send failed!\n");
 		}
 		else {
