@@ -23,32 +23,42 @@ int main(int argc, char **argv)
 	mxArray *testdata = NULL, *result = NULL;
 
 	//socket define =========================================================
-	int					listenfd, connfd;
-	char				buff[MAXLINE];
-	socklen_t			len;
-	time_t				ticks;
+	int	        listenfd, connfd;
+	char 				buff_1[MAXLINE + 1], buff_2[MAXLINE + 1] ;
+	time_t			ticks;
+	socklen_t		len;
+	
 	struct sockaddr_in6	servaddr, cliaddr;
 
 	//socket ================================================================
-	listenfd = socket(AF_INET6, SOCK_STREAM, 0);
-  if (listenfd == -1) {
+	if ((listenfd = socket(AF_INET6, SOCK_STREAM, 0)) == -1) {
     perror("socket failed!\n");
+		exit(1);
   }
+	else {
+		printf("socket created\n");
+	}
 
 	bzero(&servaddr, sizeof(servaddr));
 	servaddr.sin6_family = AF_INET6;
 	servaddr.sin6_addr   = in6addr_any;
-	servaddr.sin6_port   = htons(5670);
+	servaddr.sin6_port   = htons(5670);	
 
-	//matlab in socket
 	if (bind(listenfd, (struct sockaddr *) &servaddr, sizeof(servaddr)) == -1) {
-    perror("failed!\n");
+    perror("bind failed!\n");
+		exit(1);
   }
+	else {
+		printf("binded\n");
+	}
 
 	if (listen(listenfd, 5) == -1) {
-    perror("failed!\n");
+    perror("listen failed!\n");
+		exit(1);
   }
-
+	else {
+		printf("begin listen\n");
+	}
 	//matlab======================================================================
 	if (!(ep =engOpen("/work/matlab2016/bin/matlab")))
 	{
