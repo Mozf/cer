@@ -58,27 +58,7 @@ int main(int argc, char **argv){
 		else {
 			printf("accept\n");
 		}
-		//	printf("connection from %s\n",
-		//	sock_ntop((struct sockaddr *) &cliaddr, len));
-    /*
-		//ticks = time(NULL);
-		snprintf(buff, sizeof(buff), "%.24s\r\n","momo");
-		write(connfd, buff, strlen(buff));
 
-		int n;
-		char recvline[MAXLINE + 1];
-		while ( (n = read(connfd, recvline, MAXLINE)) > 0) {
-		recvline[n] = 0;	// null terminate 
-    //printf("%s",recvline);
-		if (fputs(recvline, stdout) == EOF) {
-      perror("fputs failed!\n");
-    }
-	}*/
-  //snprintf(buff, sizeof(buff), "%.24s\r\n","momo");
-  //write(connfd, buff, strlen(buff));
-   // bzero(buff,MAXLINE + 1);
-   // strcpy(buff,"momosr");
-   // len = send(connfd,buff,strlen(buff),0);
     bzero(buff,MAXLINE + 1);
     if(len = recv(connfd,buff,strlen(buff),MSG_WAITALL) == -1) {
 			perror("recv failed!\n");
@@ -96,14 +76,6 @@ int main(int argc, char **argv){
 			printf("send\n");
 		}
 
-    //bzero(buff,MAXLINE + 1);
-      //strcpy(buff,"momosr");
-    //len = send(connfd,buff,strlen(buff),0);
-    //printf("send");
-
-	  //if (n < 0)
-		  //perror("failed!\n");
-  
 	  close(connfd);
 		return 0;
 	}
