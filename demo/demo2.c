@@ -68,77 +68,77 @@ int main(int argc, char **argv)
 	engSetVisible(ep,false);
 	//=============================================================================
 
+	//socket=======================================================================
+	len = sizeof(cliaddr);
 
-	for ( ; ; ) {
-		len = sizeof(cliaddr);
-		connfd = accept(listenfd, (struct sockaddr *) &cliaddr, &len);
-    if (connfd == -1) {
-      perror("accept failed!\n");
-    }
+	if ((connfd = accept(listenfd, (struct sockaddr *) &cliaddr, &len)) == -1) {
+		perror("accept failed!\n");
+		exit(1);
+	}
+	else {
+		printf("accept\n");
+	}
 
-		int n;
-		char recvline[MAXLINE + 1];
-		while ( (n = read(connfd, recvline, MAXLINE)) > 0) {
-
-			char data[240]={0};
-			strcpy(data,recvline);
-			
-			//服务器做数据截取，得气味数据120*2
-			//char data[]= {"022936010229360102293601032936010229360102293601022836010328350103283500022734010227340102263301032633010325320003243101022431010223300103222F0103222E0103222E0102212D0102212D0102222C0103222C0002222C0102222C0102222C0102222C0103222C0102212B01"};
-
-			//	data[240]='/0';
-			testdata = mxCreateString(data); //mxCreateString创建一个1*N维的字符串阵列。
-
-			if(flag != engPutVariable(ep, "input_data", testdata))			//检查发数据情况
-			{
-				printf("f2ff\n");			
-			}
-
-			if(flag != engEvalString(ep, "save ('data.mat','input_data');"))	//检查存数据情况
-			{
-				printf("f3ff\n"); 
-			}
-
-			buffer[BUFSIZE] = '\0';
-			engOutputBuffer(ep, buffer, BUFSIZE);						
-			if(flag != engEvalString(ep, "Mtest"))					 //检查算法文件执行
-			{
-				printf("f4ff\n");
-			}
-
-			if ((result = engGetVariable(ep, "level")) !=NULL)
-			{
-											
-			//	   printf("the right buffer is  %s\n",buffer);
-				for (i = 0; i < 2; i++)
-				{
-					level[i] = buffer[i + 14];					//kinds:0x01,0x02,0x03
-					level[i+2] = buffer[i+30];					//levels:0x01,0x02,0x03,0x04,0x05
-				}
-				level[4]='\0';
-				printf("level:%s\n", level);					//输出结果：第一字节是分类结果，第二字节是分级结果
-				snprintf(level, sizeof(level), "%.4s\r\n",level);
-				write(connfd, level, strlen(level));
-			}else
-					printf("ffff\n" );
-
-			mxDestroyArray(testdata);					
-			mxDestroyArray(result);									
-
-			recvline[n] = 0;	/* null terminate */
-			if (fputs(recvline, stdout) == EOF) {
-				perror("fputs failed!\n");
-			}
-			break;
-		}
-		if (n > 0) break;
-		if (n < 0) {
-			perror("failed!\n");
-		}
-
-		close(connfd);
+	if(len = recv(connfd,buff_1,sizeof(buff_1),0) == -1) {
+		perror("recv failed!\n");
+	}
+	else {
+		printf("%s\n",buff_1);
 	}
 	
+	char data[241]={0};
+	strncpy(data,buff_1,240);
+	//=============================================================================
+
+	//服务器做数据截取，得气味数据120*2
+	//char data[]= {"022936010229360102293601032936010229360102293601022836010328350103283500022734010227340102263301032633010325320003243101022431010223300103222F0103222E0103222E0102212D0102212D0102222C0103222C0002222C0102222C0102222C0102222C0103222C0102212B01"};
+
+	//	data[240]='/0';
+	testdata = mxCreateString(data); //mxCreateString创建一个1*N维的字符串阵列。
+
+	if(flag != engPutVariable(ep, "input_data", testdata))			//检查发数据情况
+	{
+		printf("f2ff\n");			
+	}
+
+	if(flag != engEvalString(ep, "save ('data.mat','input_data');"))	//检查存数据情况
+	{
+		printf("f3ff\n"); 
+	}
+
+	buffer[BUFSIZE] = '\0';
+	engOutputBuffer(ep, buffer, BUFSIZE);						
+	if(flag != engEvalString(ep, "Mtest"))					 //检查算法文件执行
+	{
+		printf("f4ff\n");
+	}
+
+	if ((result = engGetVariable(ep, "level")) !=NULL) {						
+	//	   printf("the right buffer is  %s\n",buffer);
+		for (i = 0; i < 2; i++) {
+			level[i] = buffer[i + 14];					//kinds:0x01,0x02,0x03
+			level[i+2] = buffer[i+30];					//levels:0x01,0x02,0x03,0x04,0x05
+		}
+		level[4]='\0';
+		printf("level:%s\n", level);					//输出结果：第一字节是分类结果，第二字节是分级结果
+	}else
+			printf("ffff\n" );
+
+//socket=================================================================================
+	memset(buff_2, 0, sizeof(buff_2));
+	strcpy(buff_2, level);
+	if (len = send(connfd, buff_2, sizeof(buff_2), 0) == -1) {
+		perror("send failed!\n");
+	}
+	else {
+		printf("send\n");
+	}
+	close(connfd);
+//socket=================================================================================
+
+	mxDestroyArray(testdata);					
+	mxDestroyArray(result);									
+
 	engClose(ep);		
 	return EXIT_SUCCESS;
 }
