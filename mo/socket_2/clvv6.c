@@ -46,11 +46,11 @@ int main(int argc, char **argv)
 		}
 
 	memset(buff_1, 0, sizeof(buff_1));
-	strcpy(buff_1, "这是client发给server的消息2\n");
+	strcpy(buff_1, "022936010229360102293601032936010229360102293601022836010328350103283500022734010227340102263301032633010325320003243101022431010223300103222F0103222E0103222E0102212D0102212D0102222C0103222C0002222C0102222C0102222C0102222C0103222C0102212B01\n");
 	if( n = send(sockfd,buff_1,sizeof(buff_1),0) < 0) {
 		perror("connect failed!\n");
 	}
-	else printf("send already\n");
+	else printf("send\n");
 
 	if(n = recv(sockfd,buff_2,sizeof(buff_2),0) == -1) {
 		perror("recv failed!\n");
