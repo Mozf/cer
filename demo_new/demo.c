@@ -15,7 +15,7 @@ int main()
 	int i =0, j =0,flag =0;
 	mxArray *testdata = NULL, *result = NULL;
 
-	if (!(ep =engOpen("/usr/local/MATLAB/R2015b/bin/matlab")))
+	if (!(ep =engOpen("/work/matlab2016/bin/matlab")))
 	{
 		printf("\nCan't start MATLAB engine!\n\n");
 		return EXIT_FAILURE;
@@ -23,7 +23,7 @@ int main()
 	engSetVisible(ep,false);
 
 	//服务器做数据截取，得气味数据120*2
-	char data[]={"022936010229360102293601032936010229360102293601022836010328350103283500022734010227340102263301032633010325320003243101022431010223300103222F0103222E0103222E0102212D0102212D0102222C0103222C0002222C0102222C0102222C0102222C0103222C0102212B01"};
+	char data[]={"022734510227345102263661032639910325320003243101022431990223309903222F9903222E99"};
 	
 //	data[240]='/0';
 	testdata = mxCreateString(data); //mxCreateString创建一个1*N维的字符串阵列。
