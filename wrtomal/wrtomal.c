@@ -41,7 +41,7 @@ int main(int argc, char **argv) {
 		printf("\nCan't start MATLAB engine!\n\n");
 		return EXIT_FAILURE;
 	}	
-	engSetVisible(ep,1);
+	engSetVisible(ep,0);
 
   testdata = mxCreateDoubleMatrix(3,3,mxREAL);
   result = mxCreateDoubleMatrix(3,3,mxREAL);
