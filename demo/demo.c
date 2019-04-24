@@ -30,24 +30,6 @@ int main()
 	}	
 	engSetVisible(ep,false);
 
-	//readsomething
-	int n;
-	char buf[241]={0};
-	int fd=open("wriclifile.txt",O_RDONLY | O_CREAT,777);
-	if(fd<0)
-	{
-		perror("open wriclifile err:");
-		return -1;
-	}
-	n = read(fd,buf,sizeof(buf) );
-	if(n<0)
-	{
-		perror("read wriclifile err:");
-		return -1;
-	}
-	char data[241]={0};
-	strcpy(data,buf);
-
 	//服务器做数据截取，得气味数据120*2
 	char data[]={"022936010229360102293601032936010229360102293601022836010328350103283500022734010227340102263301032633010325320003243101022431010223300103222F0103222E0103222E0102212D0102212D0102222C0103222C0002222C0102222C0102222C0102222C0103222C0102212B01"};
 
@@ -85,19 +67,6 @@ int main()
 	}else
 			printf("ffff\n" );
 	
-	//output 
-	int fd_rui=open("rui.txt",O_WRONLY,0);
-	if(fd_rui<0)
-	{
-		perror("open rui.txt err:");
-		return -1;
-	}
-	int len =write(fd_rui,level,sizeof(level));
-	if(len<0)
-	{
-		perror("write result err:");
-		return -1;
-	}
 	mxDestroyArray(testdata);					
 	mxDestroyArray(result);										
 	engClose(ep);		
