@@ -23,7 +23,7 @@ int main()
 	int i =0, j =0,flag =0;
 	mxArray *testdata = NULL, *result = NULL;
 
-	if (!(ep =engOpen("/work/matlab2016/bin/matlab")))
+	if (!(ep =engOpen("/usr/local/MATLAB/R2016b/bin/matlab")))
 	{
 		printf("\nCan't start MATLAB engine!\n\n");
 		return EXIT_FAILURE;
