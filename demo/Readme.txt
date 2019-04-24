@@ -20,9 +20,11 @@
 	AAAA007C060103000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000D9
 
 
-编译：
-gcc  -L/usr/local/MATLAB/R2015b/bin/glnxa64 -I//usr/local/MATLAB/R2015b/extern/include demo.c -o demo -lmat -lmx -leng -Wl,-rpath=/usr/local/MATLAB/R2015b/bin/glnxa64
-gcc  -L/work/matlab2016/bin/glnxa64 -I//work/matlab2016/extern/include demo.c -o demo -lmat -lmx -leng -Wl,-rpath=/work/matlab2016/bin/glnxa64
+本地编译：
+gcc  -L/usr/local/MATLAB/R2016b/bin/glnxa64 -I//usr/local/MATLAB/R2016b/extern/include demo.c -o demo -lmat -lmx -leng -Wl,-rpath=/usr/local/MATLAB/R2016b/bin/glnxa64
+
+centos编译：
+gcc  -L /work/matlab2016/bin/glnxa64 -I /work/matlab2016/extern/include demo.c -o demo -lmat -lmx -leng -Wl,-rpath=/work/matlab2016/bin/glnxa64
 运行./demo
 level：0403
 
