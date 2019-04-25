@@ -7,40 +7,55 @@
 
 #define  BUFSIZE 100
 
-int main()
-{
+int main(int argc, char **argv) {
  
 	Engine *ep;
 	char level[5],buffer[BUFSIZE + 1];
-	int i =0, j =0,flag =0;
+	int flag =0;
 	mxArray *testdata = NULL, *result = NULL;
 
-	if (!(ep =engOpen("/usr/local/MATLAB/R2016b/bin/matlab")))
-	{
+	if (!(ep =engOpen("/usr/local/MATLAB/R2016b/bin/matlab"))) {
 		printf("\nCan't start MATLAB engine!\n\n");
 		return EXIT_FAILURE;
 	}	
 	engSetVisible(ep,false);
 
-	//服务器做数据截取，得气味数据120*2
-	char data[]={"022734510227345102263661032639910325320003243101022431990223309903222F9903222E99"};
-	
-//	data[240]='/0';
-	testdata = mxCreateString(data); //mxCreateString创建一个1*N维的字符串阵列。
+	//readfile120*10=====================================================
+	FILE *fp;
+	int jump;
+	double data[120][10] = {0} ;
+	printf(" 输入文件名: ");
+	int flag=1;
+	char buff[1024]={0};
+	fp=fopen("橙子0001.nos","r");     
 
-	if(flag != engPutVariable(ep, "input_data", testdata))			//检查发数据情况
+	while(jump++<52) 
+		fgets(buff,1024,fp);        //第53行了。
+
+	for(int i = 0 ;i < 120 ; i++) {
+		for(int j = 0 ;j < 10; j++) {
+			fscanf(fp,"%lf",&data[i][j]);
+			fseek(fp, 1L, SEEK_CUR);   /*fp指针从当前位置向后移动*/
+		}
+		fgets(buff,1024,fp);    //每行读10个数据，然后换行
+	}
+	
+	testdata = mxCreateDoubleMatrix(3,3,mxREAL);
+	memcpy(mxGetPr(testdata),data,sizeof(double)*3*3);
+
+	if(flag != engPutVariable(ep, "load_data", testdata))			//检查发数据情况
 	{
 		printf("f2ff\n");			
 	}
 	
-	if(flag != engEvalString(ep, "save ('data.mat','input_data');"))	//检查存数据情况
+	if(flag != engEvalString(ep, "save ('data.mat','load_data');"))	//检查存数据情况
 	{
 		printf("f3ff\n"); 
 	}
 	
 	buffer[BUFSIZE] = '\0';
 	engOutputBuffer(ep, buffer, BUFSIZE);						
-	if(flag != engEvalString(ep, "Mtest"))					 //检查算法文件执行
+	if(flag != engEvalString(ep, "test_190425"))					 //检查算法文件执行
 	{
 		printf("f4ff\n");
 	}
@@ -48,8 +63,8 @@ int main()
 	if ((result = engGetVariable(ep, "level")) !=NULL)
 	{
 									
-//	   printf("the right buffer is  %s\n",buffer);
-	   for (i = 0; i < 2; i++)
+	//	   printf("the right buffer is  %s\n",buffer);
+	   for (int i = 0; i < 2; i++)
 		{
 		  level[i] = buffer[i + 14];					//kinds:0x01,0x02,0x03
 		  level[i+2] = buffer[i+30];					//levels:0x01,0x02,0x03,0x04,0x05
