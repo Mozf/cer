@@ -25,7 +25,7 @@ int main(int argc, char **argv) {
 	int flag =0;
 	mxArray *tdata = NULL, *result = NULL;
 
-	if (!(ep =engOpen("/usr/local/MATLAB/R2016b/bin/matlab"))) {
+	if (!(ep =engOpen("/work/matlab2016/bin/matlab"))) {
 		printf("\nCan't start MATLAB engine!\n\n");
 		return EXIT_FAILURE;
 	}	
@@ -55,7 +55,7 @@ int main(int argc, char **argv) {
 	int jump;
 	double data[120][10] = {0} ;
 	char buff[1024]={0};
-	fp=fopen("20004.nos","r");     
+	fp=fopen("橙子0001.nos","r");     
 
 	while(jump++<52) 
 		fgets(buff,1024,fp);        //第53行了。
