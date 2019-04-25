@@ -18,10 +18,10 @@
 	3、我也不知道这里放着这么多其他文件有什么用，但是好像真的没有这些就不行。
 
 wrtomal编译在cer上编译：
-gcc  -L /work/matlab2016/bin/glnxa64 -I /work/matlab2016/extern/include demo.c -o demo -lmat -lmx -leng -Wl,-rpath=/work/matlab2016/bin/glnxa64
+gcc  -L /work/matlab2016/bin/glnxa64 -I /work/matlab2016/extern/include wrtomal.c -o wrt -lmat -lmx -leng -Wl,-rpath=/work/matlab2016/bin/glnxa64
 
 wrtomal在本地linux上编译：
-gcc  -L/usr/local/MATLAB/R2016b/bin/glnxa64 -I /usr/local/MATLAB/R2016b/extern/include demo.c -o demo -lmat -lmx -leng -Wl,-rpath=/usr/local/MATLAB/R2016b/bin/glnxa64
+gcc  -L/usr/local/MATLAB/R2016b/bin/glnxa64 -I /usr/local/MATLAB/R2016b/extern/include wrtomal.c -o wrt -lmat -lmx -leng -Wl,-rpath=/usr/local/MATLAB/R2016b/bin/glnxa64
 
 运行./demo
 level：0403
