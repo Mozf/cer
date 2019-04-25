@@ -86,6 +86,18 @@ int main(int argc, char **argv) {
 			perror("recv err");
 			return -1;
 		}
+		else
+		{
+			int i=0,j=0;
+			for(i=0;i<ROWS;i++)
+			{
+				for(j=0;j<COLUMNS;j++)
+				{
+					printf(" %lf ",recvmsg[i][j]);
+				}
+				putchar('\n');
+			}
+		}
 	}
 	
 
