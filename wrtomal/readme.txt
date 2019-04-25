@@ -23,9 +23,17 @@ gcc  -L /work/matlab2016/bin/glnxa64 -I /work/matlab2016/extern/include wrtomal.
 wrtomal在本地linux上编译：
 gcc  -L/usr/local/MATLAB/R2016b/bin/glnxa64 -I /usr/local/MATLAB/R2016b/extern/include wrtomal.c -o wrt -lmat -lmx -leng -Wl,-rpath=/usr/local/MATLAB/R2016b/bin/glnxa64
 
-运行./demo
-level：0403
+运行./wrt
 
+
+
+wr_display编译在cer上编译：
+gcc  -L /work/matlab2016/bin/glnxa64 -I /work/matlab2016/extern/include wr_display.c -o display -lmat -lmx -leng -Wl,-rpath=/work/matlab2016/bin/glnxa64
+
+wr_display在本地linux上编译：
+gcc  -L/usr/local/MATLAB/R2016b/bin/glnxa64 -I /usr/local/MATLAB/R2016b/extern/include wr_display.c -o display -lmat -lmx -leng -Wl,-rpath=/usr/local/MATLAB/R2016b/bin/glnxa64
+
+运行./display
 
 
 备注：
