@@ -23,7 +23,7 @@ int main(int argc, char **argv) {
     printf("\n");
   }
 
-  if (!(ep =engOpen("/usr/local/MATLAB/R2016b/bin/matlab"))) {
+  if (!(ep =engOpen("/work/matlab2016/bin/matlab"))) {
 		printf("\nCan't start MATLAB engine!\n\n");
 		return EXIT_FAILURE;
 	}	
