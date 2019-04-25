@@ -58,7 +58,7 @@ int main(int argc, char **argv) {
   }
 
   //检查存数据情况
-  if(flag != engEvalString(ep, "save ('data.mat','input_data');")) {
+  if(flag != engEvalString(ep, "save ('data.mat','testdata');")) {
 		printf("f3ff\n"); 
 	}
 
