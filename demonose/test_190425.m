@@ -1,6 +1,6 @@
 load net;
 % load_test_data
-% [filelist,path]=uigetfile({'*.nos','NOS Files(*.nos)'},'Ñ¡Ôñ²âÊÔÑù±¾');
+% [filelist,path]=uigetfile({'*.nos','NOS Files(*.nos)'},'Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½');
 % if iscell(filelist) 
 % 	filenum=size(filelist,2); 
 % elseif filelist==0 
@@ -8,10 +8,10 @@ load net;
 % end
 % test_data=read_NOS_data([path,filelist]);
 
-% load_dataÎªÔÆÆ½Ì¨´«ÈëµÄÊı¾İ
+% load_dataÎªï¿½ï¿½Æ½Ì¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 test_data=load_data';
 
-% ÌØÕ÷ÌáÈ¡
+% ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡
 feature1=mean(test_data(1:120,:));
 feature2=std(test_data(1:120,:));
 feature3=var(test_data(1:120,:));
@@ -60,3 +60,5 @@ elseif kind_num==4
 else
     kind='0x00';
 end
+
+kind
