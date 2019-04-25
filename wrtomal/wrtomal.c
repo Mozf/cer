@@ -57,6 +57,11 @@ int main(int argc, char **argv) {
     printf("f2ff\n");	
   }
 
+  //检查存数据情况
+  if(flag != engEvalString(ep, "save ('data.mat','input_data');")) {
+		printf("f3ff\n"); 
+	}
+
   result = engGetVariable(ep,"result");
   memcpy(datab,mxGetPr(result),sizeof(datab));
 
