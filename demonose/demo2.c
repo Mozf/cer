@@ -32,7 +32,7 @@ int main(int argc, char **argv) {
 	engSetVisible(ep,false);
 
 
-	/*/socket===============================================================
+	//socket===============================================================
 	int sockfd = socket(AF_INET6,SOCK_STREAM,0);
 	struct sockaddr_in6 server_addr;
 	char 	buff_2[1024 + 1];
@@ -47,10 +47,10 @@ int main(int argc, char **argv) {
 	listen(sockfd,10);
 	struct sockaddr_in6 peer_addr;
 	socklen_t len = sizeof(peer_addr);
-	*/
+	//
 
 
-	//readfile120*10=====================================================
+	/*/readfile120*10=====================================================
 	FILE *fp;
 	int jump;
 	double data[120][10] = {0} ;
@@ -67,40 +67,47 @@ int main(int argc, char **argv) {
 		}
 		fgets(buff,1024,fp);    
 	}
+	*/
 	
 
 
 
-	/*/socket===================================================================
+	//socket===================================================================
 	int new_sockfd = accept(sockfd,(struct sockaddr *)&peer_addr,&len);
 	if(new_sockfd < 0) {
 			perror("accept err");
 			exit(-1);
 	}
 	else {
+
 		printf("new_sockfd = %d\n",new_sockfd);
-		double recvmsg[ROWS][COLUMNS];
-		memset(recvmsg,0,sizeof(recvmsg));
-		char *pRecvmsg =(char *)&recvmsg[0][0];
-		int res= recv(new_sockfd,pRecvmsg,sizeof(double)*(ROWS*COLUMNS),0);
-		if(res < 0) {
-			perror("recv err");
-			return -1;
-		}
-		else
-		{
-			int i=0,j=0;
-			for(i=0;i<ROWS;i++)
-			{
-				for(j=0;j<COLUMNS;j++)
-				{
-					printf(" %lf ",recvmsg[i][j]);
-				}
-				putchar('\n');
+
+		int total=0;
+		double data[ROWS][COLUMNS]={0};
+		int col=0;
+
+		while(total < (sizeof(double)*ROWS*COLUMNS)) {
+
+			double recvmsg[CH_ROWS][COLUMNS];
+
+			memset(recvmsg,0,sizeof(recvmsg));
+
+			char *pRecvmsg =(char *)&recvmsg[0][0];
+
+			int res= recv(new_sockfd,pRecvmsg,sizeof(double)*(CH_ROWS*COLUMNS),0);
+			total +=res;
+			if(res < 0) {
+				perror("recv err");
+				return -1;
+			}
+			else {
+				printf("recv size:%d   total:%d\n",res,total);
+				memcpy(data[col],recvmsg,sizeof(double)*(CH_ROWS*COLUMNS));
+				col+=CH_ROWS;
 			}
 		}
 	}
-	*/
+	//
 	
 
 	//matlab===================================================================
@@ -124,7 +131,7 @@ int main(int argc, char **argv) {
 	
 	if ((result = engGetVariable(ep, "kind")) !=NULL) {			
 	   for (int i = 0; i < 2; i++) {
-		  kind[i] = buffer[i + 14];					//kinds:0x01,0x02,0x03
+		  kind[i] = buffer[i + 14];					//kinds:0x01,0x02,0x03,0x04
 		}
 		kind[2]='\0';
 		printf("level:%s\n", kind);				
@@ -136,7 +143,7 @@ int main(int argc, char **argv) {
 	mxDestroyArray(result);						
 
 
-	/*/socket=================================================================================
+	//socket=================================================================================
 	memset(buff_2, 0, sizeof(buff_2));
 	strcpy(buff_2, kind);
 	if (len = send(new_sockfd, buff_2, sizeof(buff_2), 0) == -1) {
@@ -145,7 +152,7 @@ int main(int argc, char **argv) {
 
 
   close(new_sockfd);
-	*/
+	//
 	engClose(ep);		
 
 	return 0;
