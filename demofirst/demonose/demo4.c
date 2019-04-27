@@ -74,87 +74,88 @@ int main(int argc, char **argv) {
 
 
 	//socket===================================================================
-while(1){
-	double data[ROWS][COLUMNS]={0};
-  int new_sockfd = accept(sockfd,(struct sockaddr *)&peer_addr,&len);
-	if(new_sockfd < 0) {
-			perror("accept err");
-			exit(-1);
-	}
-	else {
+	while(1){
+		double data[ROWS][COLUMNS]={0};
+		int new_sockfd = accept(sockfd,(struct sockaddr *)&peer_addr,&len);
+		if(new_sockfd < 0) {
+				perror("accept err");
+				exit(-1);
+		}
+		else {
 
-		printf("new_sockfd = %d\n",new_sockfd);
+			printf("new_sockfd = %d\n",new_sockfd);
 
-		int total=0;
-		//double data[ROWS][COLUMNS]={0};
-		int col=0;
+			int total=0;
+			//double data[ROWS][COLUMNS]={0};
+			int col=0;
 
-		while(total < (sizeof(double)*ROWS*COLUMNS)) {
+			while(total < (sizeof(double)*ROWS*COLUMNS)) {
 
-			double recvmsg[CH_ROWS][COLUMNS];
+				double recvmsg[CH_ROWS][COLUMNS];
 
-			memset(recvmsg,0,sizeof(recvmsg));
+				memset(recvmsg,0,sizeof(recvmsg));
 
-			char *pRecvmsg =(char *)&recvmsg[0][0];
+				char *pRecvmsg =(char *)&recvmsg[0][0];
 
-			int res= recv(new_sockfd,pRecvmsg,sizeof(double)*(CH_ROWS*COLUMNS),MSG_WAITALL);
-			total +=res;
-			if(res < 0) {
-				perror("recv err");
-				return -1;
-			}
-			else {
-				printf("recv size:%d   total:%d\n",res,total);
-				memcpy(data[col],recvmsg,sizeof(double)*(CH_ROWS*COLUMNS));
-				col+=CH_ROWS;
+				int res= recv(new_sockfd,pRecvmsg,sizeof(double)*(CH_ROWS*COLUMNS),MSG_WAITALL);
+				total +=res;
+				if(res < 0) {
+					perror("recv err");
+					return -1;
+				}
+				else {
+					printf("recv size:%d   total:%d\n",res,total);
+					memcpy(data[col],recvmsg,sizeof(double)*(CH_ROWS*COLUMNS));
+					col+=CH_ROWS;
+				}
 			}
 		}
-	}
+		//
+		
+
+		//matlab===================================================================
+		tdata = mxCreateDoubleMatrix(10,120,mxREAL);
+		memcpy(mxGetPr(tdata),data,sizeof(double)*120*10);
+
+		if(flag != engPutVariable(ep, "load_data", tdata)) {
+			printf("1\n");			
+		}
+		
+		if(flag != engEvalString(ep, "save ('data.mat','load_data');"))	 {
+			printf("2\n"); 
+		}
+		
+		buffer[BUFSIZE] = '\0';
+		engOutputBuffer(ep, buffer, BUFSIZE);	
+
+		if(flag != engEvalString(ep, "test_190425")) {
+			printf("3\n");
+		}
+		
+		if ((result = engGetVariable(ep, "kind")) !=NULL) {			
+			for (int i = 0; i < 2; i++) {
+				kind[i] = buffer[i + 14];					//kinds:0x01,0x02,0x03,0x04
+			}
+			kind[2]='\0';
+			printf("level:%s\n", kind);				
+		}
+		else
+			printf("ff\n" );
+		
+		mxDestroyArray(tdata);					
+		mxDestroyArray(result);						
+
+
+		//socket=================================================================================
+		memset(buff_2, 0, sizeof(buff_2));
+		strcpy(buff_2, kind);
+		if (len = send(new_sockfd, buff_2, sizeof(buff_2), 0) == -1) {
+			perror("send failed!\n");
+		}
+
+		close(new_sockfd);
+	}	
 	//
-	
-
-	//matlab===================================================================
-	tdata = mxCreateDoubleMatrix(10,120,mxREAL);
-	memcpy(mxGetPr(tdata),data,sizeof(double)*120*10);
-
-	if(flag != engPutVariable(ep, "load_data", tdata)) {
-		printf("1\n");			
-	}
-	
-	if(flag != engEvalString(ep, "save ('data.mat','load_data');"))	 {
-		printf("2\n"); 
-	}
-	
-	buffer[BUFSIZE] = '\0';
-	engOutputBuffer(ep, buffer, BUFSIZE);	
-
-	if(flag != engEvalString(ep, "test_190425")) {
-		printf("3\n");
-	}
-	
-	if ((result = engGetVariable(ep, "kind")) !=NULL) {			
-	   for (int i = 0; i < 2; i++) {
-		  kind[i] = buffer[i + 14];					//kinds:0x01,0x02,0x03,0x04
-		}
-		kind[2]='\0';
-		printf("level:%s\n", kind);				
-	}
-	else
-		printf("ff\n" );
-	
-	mxDestroyArray(tdata);					
-	mxDestroyArray(result);						
-
-
-	//socket=================================================================================
-	memset(buff_2, 0, sizeof(buff_2));
-	strcpy(buff_2, kind);
-	if (len = send(new_sockfd, buff_2, sizeof(buff_2), 0) == -1) {
-		perror("send failed!\n");
-	}
-
-  close(new_sockfd);
-}	//
 	engClose(ep);		
 
 	return 0;
