@@ -19,7 +19,7 @@ int name_arr[] = {115200, 38400,  19200,  9600,  4800,  2400,  1200,  300,
             38400,  19200,  9600, 4800, 2400, 1200,  300, };
 int Opendev(char * Dev)//打开串口设备文件
 {
-    int fd=open(Dev,O_RDWR|O_NOCTTY);
+    int fd = open(Dev, O_RDWR | O_NOCTTY);
     if(fd < 0)
     {
         perror("can not open serial\n");
@@ -124,7 +124,7 @@ int set_Parity(int fd,int databits,int stopbits,int parity)
     } 
     return (TRUE);
 }
-int analysis (char *buff)
+int printfread (char *buff)
 {
     int i;
     char *p;
@@ -165,24 +165,15 @@ int main(int argc, const char *argv[])
     { 
         sleep(1); 
         memset(buff,0,sizeof(buff));
-        int write_size=write(fd,"ruiruirui",9);
-        printf("write size is %d\n",write_size);
+        //int write_size=write(fd,"ruiruirui",9);
+        //printf("write size is %d\n",write_size);
         nread = read(fd,buff,sizeof(buff));
         printf("read size is %d\n",nread);
         if((nread>0))
         {       
             printf("Success!\n"); 
         }
-        analysis(buff);
-       // int love_fd=open("love.txt",O_RDWR,777);
-       // if(love_fd<0)
-       // {
-       //     perror("open love_file err\n");
-       //     return -1;
-       // }
-       // int love_wri_size=write(love_fd,buff,sizeof(buff));
-       // printf("love_wri_size is %d\n",love_wri_size);
+        printfread(buff);
     }
-
     return 0;
 }  
