@@ -15,6 +15,7 @@
 
 int speed_arr[] = { B115200, B38400, B19200, B9600, B4800, B2400, B1200, B300, B38400, B19200, B9600, B4800, B2400, B1200, B300, };
 int name_arr[] = {115200, 38400,  19200,  9600,  4800,  2400,  1200,  300, 38400,  19200,  9600, 4800, 2400, 1200,  300, };
+
 int Opendev(char * Dev)//打开串口设备文件
 {
   int fd = open(Dev, O_RDWR | O_NOCTTY);
@@ -136,43 +137,51 @@ int printfread (char *buff)
   return 0;
 }
 
-int main(int argc, const char *argv[])
+int main(int argc, const char *argv)
 {
   int fd;
   int nread;
+  int nwrite;
   char buff[255];
+  char sendbuffer[255];
+  char *send = "1";
   char *dev_name = "/dev/ttyUSB1";//根据实际情况选择串口
-  while(1) 
-  {  
+  while(1) {  
     fd = Opendev(dev_name); //打开串口 
     if(fd > 0) 
       set_speed(fd, 115200); //设置波特率 
-    else 
-    { 
-        printf("Can't Open Serial Port!\n"); 
-        sleep(1);
-        continue; 
+    else { 
+      printf("Can't Open Serial Port!\n"); 
+      sleep(1);
+      continue; 
     } 
     break;
   }
-  if(set_Parity(fd, 8, 1, 'N') == FALSE) //设置校验位 
-  {
+
+  if(set_Parity(fd, 8, 1, 'N') == FALSE) {
     printf("Set Parity Error\n"); 
     exit(1);
   }
-  while(1) 
-  { 
-    sleep(1); 
-    memset(buff, 0, sizeof(buff));
-    //int write_size=write(fd,"ruiruirui",9);
-    //printf("write size is %d\n",write_size);
-    nread = read(fd, buff, sizeof(buff));
-    printf("read size is %d\n", nread);
-    if((nread > 0))
-    {       
-      printf("Success!\n"); 
-    }
-    printfread(buff);
+
+  sleep(1); 
+  memset(buff, 0, sizeof(buff));
+  memset(sendbuffer, 0, sizeof(sendbuffer));
+
+  while(sizeof(buff) = 0);
+
+  nread = read(fd, buff, sizeof(buff));
+  printf("read size is %d\n", nread);
+  if((nread > 0)) {       
+    printf("recv Success!\n"); 
+  }
+
+  printfread(buff);
+
+  fgets(sendbuffer, 255, 'g');
+  nwrite = write(fd, sendbuffer, 1);
+  printf("wirte size is %d\n", nwrite);
+  if((nwrite > 0)){
+    printf("send success!\n");
   }
   return 0;
 }  
