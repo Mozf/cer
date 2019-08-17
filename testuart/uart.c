@@ -140,11 +140,14 @@ int printfread (char *buff)
 int main(int argc, const char *argv)
 {
   int fd;
-  int nread;
-  int nwrite;
+  int nread = -1;
+  int nwrite = -1;
   char buff[255];
   char sendbuffer[255];
-  char *send = "1";
+  char *send1 = "q";
+  char *sendd = "d";
+  char *sendg = "g";
+
   char *dev_name = "/dev/ttyUSB1";//根据实际情况选择串口
   while(1) {  
     fd = Opendev(dev_name); //打开串口 
@@ -164,50 +167,60 @@ int main(int argc, const char *argv)
   }
 
   sleep(1); 
+  while(1){
   memset(buff, 0, sizeof(buff));
   memset(sendbuffer, 0, sizeof(sendbuffer));
 
-  while(sizeof(buff) == 0);
-
-  nread = read(fd, buff, sizeof(buff));
-  printf("read size is %d\n", nread);
+  printf("nread is %d\n", nread);
+  int i;
+  while(nread = read(fd, buff, sizeof(buff)) == 0);
   if((nread > 0)) {       
     printf("recv Success!\n"); 
   }
 
   printfread(buff);
 
-  fgets(sendbuffer, 255, 'd');
+  printf("\n1\n");
+  for(int i = 0; i < strlen(send1); i++) {
+    sendbuffer[i] = send1[i];
+  }
+  printfread(sendbuffer);
   nwrite = write(fd, sendbuffer, 1);
-  printf("wirte size is %d\n", nwrite);
   if((nwrite > 0)){
     printf("send success!\n");
   }
   memset(sendbuffer, 0, sizeof(sendbuffer));
 
-  fgets(sendbuffer, 255, 'f');
+  printf("\n2\n");
+  for(int i = 0; i < strlen(sendd); i++) {
+    sendbuffer[i] = sendd[i];
+  }
+  printfread(sendbuffer);
   nwrite = write(fd, sendbuffer, 1);
-  printf("wirte size is %d\n", nwrite);
   if((nwrite > 0)){
     printf("send success!\n");
   }
   memset(sendbuffer, 0, sizeof(sendbuffer));
 
-  fgets(sendbuffer, 255, 'g');
+  printf("\n3\n");
+  for(int i = 0; i < strlen(sendg); i++) {
+    sendbuffer[i] = sendg[i];
+  }
+  printfread(sendbuffer);
   nwrite = write(fd, sendbuffer, 1);
-  printf("wirte size is %d\n", nwrite);
   if((nwrite > 0)){
     printf("send success!\n");
   }
   memset(sendbuffer, 0, sizeof(sendbuffer));
 
-  while(sizeof(buff) == 0);
+  memset(buff, 0, sizeof(buff));
+  while(nread = read(fd, buff, sizeof(buff)) == 0);
 
   nread = read(fd, buff, sizeof(buff));
-  printf("read size is %d\n", nread);
   if((nread > 0)) {       
     printf("recv Success!\n"); 
   }
 
   printfread(buff);
+  };
 }  
