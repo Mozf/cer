@@ -167,7 +167,7 @@ int main(int argc, const char *argv)
   memset(buff, 0, sizeof(buff));
   memset(sendbuffer, 0, sizeof(sendbuffer));
 
-  while(sizeof(buff) = 0);
+  while(sizeof(buff) == 0);
 
   nread = read(fd, buff, sizeof(buff));
   printf("read size is %d\n", nread);
@@ -201,7 +201,7 @@ int main(int argc, const char *argv)
   }
   memset(sendbuffer, 0, sizeof(sendbuffer));
 
-  while(sizeof(buff) = 0);
+  while(sizeof(buff) == 0);
 
   nread = read(fd, buff, sizeof(buff));
   printf("read size is %d\n", nread);
