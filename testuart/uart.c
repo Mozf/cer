@@ -177,11 +177,37 @@ int main(int argc, const char *argv)
 
   printfread(buff);
 
+  fgets(sendbuffer, 255, 'd');
+  nwrite = write(fd, sendbuffer, 1);
+  printf("wirte size is %d\n", nwrite);
+  if((nwrite > 0)){
+    printf("send success!\n");
+  }
+  memset(sendbuffer, 0, sizeof(sendbuffer));
+
+  fgets(sendbuffer, 255, 'f');
+  nwrite = write(fd, sendbuffer, 1);
+  printf("wirte size is %d\n", nwrite);
+  if((nwrite > 0)){
+    printf("send success!\n");
+  }
+  memset(sendbuffer, 0, sizeof(sendbuffer));
+
   fgets(sendbuffer, 255, 'g');
   nwrite = write(fd, sendbuffer, 1);
   printf("wirte size is %d\n", nwrite);
   if((nwrite > 0)){
     printf("send success!\n");
   }
-  return 0;
+  memset(sendbuffer, 0, sizeof(sendbuffer));
+
+  while(sizeof(buff) = 0);
+
+  nread = read(fd, buff, sizeof(buff));
+  printf("read size is %d\n", nread);
+  if((nread > 0)) {       
+    printf("recv Success!\n"); 
+  }
+
+  printfread(buff);
 }  
