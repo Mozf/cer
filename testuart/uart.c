@@ -168,59 +168,59 @@ int main(int argc, const char *argv)
 
   sleep(1); 
   while(1){
-  memset(buff, 0, sizeof(buff));
-  memset(sendbuffer, 0, sizeof(sendbuffer));
+    memset(buff, 0, sizeof(buff));
+    memset(sendbuffer, 0, sizeof(sendbuffer));
 
-  printf("nread is %d\n", nread);
-  int i;
-  while(nread = read(fd, buff, sizeof(buff)) == 0);
-  if((nread > 0)) {       
-    printf("recv Success!\n"); 
-  }
+    printf("nread is %d\n", nread);
+    int i;
+    while(nread = read(fd, buff, sizeof(buff)) == 0);
+    if((nread > 0)) {       
+      printf("recv Success!\n"); 
+    }
 
-  printfread(buff);
+    printfread(buff);
 
-  printf("\n1\n");
-  for(int i = 0; i < strlen(send1); i++) {
-    sendbuffer[i] = send1[i];
-  }
-  printfread(sendbuffer);
-  nwrite = write(fd, sendbuffer, 1);
-  if((nwrite > 0)){
-    printf("send success!\n");
-  }
-  memset(sendbuffer, 0, sizeof(sendbuffer));
+    printf("\n1\n");
+    for(int i = 0; i < strlen(send1); i++) {
+      sendbuffer[i] = send1[i];
+    }
+    printfread(sendbuffer);
+    nwrite = write(fd, sendbuffer, 1);
+    if((nwrite > 0)){
+      printf("send success!\n");
+    }
+    memset(sendbuffer, 0, sizeof(sendbuffer));
 
-  printf("\n2\n");
-  for(int i = 0; i < strlen(sendd); i++) {
-    sendbuffer[i] = sendd[i];
-  }
-  printfread(sendbuffer);
-  nwrite = write(fd, sendbuffer, 1);
-  if((nwrite > 0)){
-    printf("send success!\n");
-  }
-  memset(sendbuffer, 0, sizeof(sendbuffer));
+    printf("\n2\n");
+    for(int i = 0; i < strlen(sendd); i++) {
+      sendbuffer[i] = sendd[i];
+    }
+    printfread(sendbuffer);
+    nwrite = write(fd, sendbuffer, 1);
+    if((nwrite > 0)){
+      printf("send success!\n");
+    }
+    memset(sendbuffer, 0, sizeof(sendbuffer));
 
-  printf("\n3\n");
-  for(int i = 0; i < strlen(sendg); i++) {
-    sendbuffer[i] = sendg[i];
-  }
-  printfread(sendbuffer);
-  nwrite = write(fd, sendbuffer, 1);
-  if((nwrite > 0)){
-    printf("send success!\n");
-  }
-  memset(sendbuffer, 0, sizeof(sendbuffer));
+    printf("\n3\n");
+    for(int i = 0; i < strlen(sendg); i++) {
+      sendbuffer[i] = sendg[i];
+    }
+    printfread(sendbuffer);
+    nwrite = write(fd, sendbuffer, 1);
+    if((nwrite > 0)){
+      printf("send success!\n");
+    }
+    memset(sendbuffer, 0, sizeof(sendbuffer));
 
-  memset(buff, 0, sizeof(buff));
-  while(nread = read(fd, buff, sizeof(buff)) == 0);
+    memset(buff, 0, sizeof(buff));
+    while(nread = read(fd, buff, sizeof(buff)) == 0);
 
-  nread = read(fd, buff, sizeof(buff));
-  if((nread > 0)) {       
-    printf("recv Success!\n"); 
-  }
+    nread = read(fd, buff, sizeof(buff));
+    if((nread > 0)) {       
+      printf("recv Success!\n"); 
+    }
 
-  printfread(buff);
+    printfread(buff);
   };
 }  
