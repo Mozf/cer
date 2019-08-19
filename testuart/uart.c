@@ -1,5 +1,3 @@
-//说明：接受串口数据并处理
-
 #include <stdio.h>
 #include <string.h>
 #include <sys/types.h>
@@ -137,12 +135,12 @@ int printfread (char *buff)
   return 0;
 }
 
-int main(int argc, const char *argv)
+int main(int argc, char **argv)
 {
   int fd;
   int nread = -1;
   int nwrite = -1;
-  char buff[255];
+  char recvbuffer[255];
   char sendbuffer[255];
   char *send1 = "q";
   char *sendd = "d";
@@ -168,17 +166,16 @@ int main(int argc, const char *argv)
 
   sleep(1); 
   while(1){
-    memset(buff, 0, sizeof(buff));
+    memset(recvbuffer, 0, sizeof(recvbuffer));
     memset(sendbuffer, 0, sizeof(sendbuffer));
 
     printf("nread is %d\n", nread);
-    int i;
-    while(nread = read(fd, buff, sizeof(buff)) == 0);
+    while((nread = read(fd, recvbuffer, sizeof(recvbuffer))) == 0);
     if((nread > 0)) {       
       printf("recv Success!\n"); 
     }
 
-    printfread(buff);
+    printfread(recvbuffer);
 
     printf("\n1\n");
     for(int i = 0; i < strlen(send1); i++) {
@@ -213,14 +210,14 @@ int main(int argc, const char *argv)
     }
     memset(sendbuffer, 0, sizeof(sendbuffer));
 
-    memset(buff, 0, sizeof(buff));
-    while(nread = read(fd, buff, sizeof(buff)) == 0);
+    memset(recvbuffer, 0, sizeof(recvbuffer));
+    while((nread = read(fd, recvbuffer, sizeof(recvbuffer))) == 0);
 
-    nread = read(fd, buff, sizeof(buff));
+    nread = read(fd, recvbuffer, sizeof(recvbuffer));
     if((nread > 0)) {       
       printf("recv Success!\n"); 
     }
 
-    printfread(buff);
+    printfread(recvbuffer);
   };
 }  
