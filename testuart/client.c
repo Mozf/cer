@@ -213,7 +213,7 @@ int main(int argc, char **argv) {
   struct sockaddr_in6 server_addr;
   server_addr.sin6_family = AF_INET6;
   server_addr.sin6_port = htons(8088);
-  if(inet_pton(AF_INET6, "2001:da8:270:2018:f816:3eff:fe40:d788", &server_addr.sin6_addr) < 0 ) {                 // IPv6
+  if(inet_pton(AF_INET6, "2001:da8:270:2018:f816:3eff:fe40:d788", &server_addr.sin6_addr) < 0 ) {  
     perror("inet_pton err");
     return -1;
   }
@@ -250,6 +250,7 @@ int main(int argc, char **argv) {
 
   //1. 接收到zynq发过来的信息，如果是running则继续下面程序；
   //2. 当服务器返回数据时，则发‘g’给zynq后，显示接收到的返回信息；
+  //
   while(1) {
     //uart==============================================================
     sleep(1); 
@@ -270,7 +271,10 @@ int main(int argc, char **argv) {
     }
 
     double msg[ROWS][COLUMNS] = {0};
-    readfile(msg, argv[1]);
+    
+    //每次都要记得修改
+    readfile(msg, "001.nos");
+
     char* pmsg = (char*)&msg[0][0];
     int res = send(sockfd, pmsg, sizeof(double)*(ROWS*COLUMNS), 0);
 
