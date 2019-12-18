@@ -10,7 +10,7 @@ print('my host : {}'.format(host))
 
 port = 8088
 
-ServerSocket.bind((host, port))
+ServerSocket.bind((host, port))#2001:da8:270:2018:f816:3eff:fe40:d788
 
 ServerSocket.listen(1)
 
