@@ -186,7 +186,7 @@ while True:
 
   print('linear_2...')
 
-  print('the odour is '+ name)
+  print('the odour is '+ name.decode("utf-8"))
 
   print('Send successfully')
 
