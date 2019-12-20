@@ -7,7 +7,7 @@ ser = serial.Serial(
 )
 
 data = ''
-datafromuart = '1111'
+datafromuart = '1111\r\n'
 
 while True:
     data = ser.readline()
