@@ -10,7 +10,7 @@ port = 5670
 s.connect((host,port))
 
 msg = s.recv(1024)
-msg2 = "connect to server"
+msg2 = "apple"
 s.send(msg2.encode("utf-8"))
 msg3 = s.recv(1024)
 
