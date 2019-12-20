@@ -9,9 +9,11 @@ port = 5670
 
 s.connect((host,port))
 
-msg = s.recv(1024)
-msg2 = "apple"
+
+msg2 = "banana"
 s.send(msg2.encode("utf-8"))
+
+msg = s.recv(1024)
 msg3 = s.recv(1024)
 
 s.close()
