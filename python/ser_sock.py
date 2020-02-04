@@ -3,7 +3,7 @@ import sys
 import random
 from time import ctime
 
-def app:
+def app():
   print('input data...')
 
   for i in range(118):
