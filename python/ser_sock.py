@@ -181,7 +181,6 @@ ServerSocket.bind((host, port))#2001:da8:270:2018:f816:3eff:fe40:d788
 ServerSocket.listen(1)
 msg = 'running'
 flag = 0
-print(type(msg))
 
 while True:
   clientsocket, addr = ServerSocket.accept()
@@ -195,19 +194,19 @@ while True:
     app()
     if flag == 0:
       clientsocket.send(msg)
-      print(msg)
+      print(msg.decode())
     else:
       clientsocket.send(msg)
-      print('the odour is '+ msg.encode())
+      print('the odour is '+ msg)
     print('yes')
   elif name.decode("utf-8") == 'get':
     app()
     if flag == 0:
       clientsocket.send(msg)
-      print(msg)
+      print(msg.decode())
     else:
       clientsocket.send(msg)
-      print('the odour is '+ msg.encode())
+      print('the odour is '+ msg)
     print('yes')
   else:
     clientsocket.send(name)
