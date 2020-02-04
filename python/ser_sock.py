@@ -190,30 +190,20 @@ while True:
 
   print('the odour is '+ name.decode("utf-8"))
 
-  print(name)
-  print(name.decode("utf-8"))
-  name1 = name.decode("utf-8")
-  print(name1)
-  print(type(str(name1)))
-  name2 = 'get'
-  print(name2)
-  print(type(name2))
-  if name1 == name2:
-    print('yes')
-  else:
-    print('no')
-
-  print('Send successfully')
-
   #send back============================================================================================================
 
   if name.decode("utf-8") == 'get\n':
+    clientsocket.send(msg.encode("utf-8"))
+    print('yes')
+  elif name.decode("utf-8") == 'get':
     clientsocket.send(msg.encode("utf-8"))
     print('yes')
   else:
     clientsocket.send(name)
     print('no')
     msg = name
+
+  print('Send successfully')
 
   # data1 = ('[%s] %s' % (ctime(),data.decode())).encode("utf-8")
   # clientsocket.send(data1)
