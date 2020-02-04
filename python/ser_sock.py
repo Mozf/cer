@@ -193,7 +193,7 @@ while True:
   print(name.decode("utf-8"))
   name1 = name.decode("utf-8")
   print(name1)
-  print(type(name1))
+  print(type(str(name1)))
   name2 = 'get'
   print(name2)
   if name1 == name2:
@@ -207,8 +207,10 @@ while True:
 
   if name.decode("utf-8") == 'get':
     clientsocket.send(msg.encode("utf-8"))
+    print('yes')
   else:
     clientsocket.send(name)
+    print('no')
     msg = name
 
   # data1 = ('[%s] %s' % (ctime(),data.decode())).encode("utf-8")
