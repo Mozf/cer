@@ -190,6 +190,9 @@ while True:
   print('the odour is '+ name.decode("utf-8"))
 
   print(name)
+  print(name.decode("utf-8"))
+  name1 = name.decode("utf-8")
+  print(name1)
 
   print('Send successfully')
 
