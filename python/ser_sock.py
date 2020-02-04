@@ -189,6 +189,8 @@ while True:
 
   print('the odour is '+ name.decode("utf-8"))
 
+  print(name.type)
+
   print('Send successfully')
 
   #send back============================================================================================================
