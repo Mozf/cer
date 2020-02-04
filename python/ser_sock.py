@@ -14,6 +14,7 @@ port = 5670
 ServerSocket.bind((host, port))#2001:da8:270:2018:f816:3eff:fe40:d788
 
 ServerSocket.listen(1)
+msg = "running"
 
 while True:
   clientsocket, addr = ServerSocket.accept()
@@ -192,10 +193,14 @@ while True:
 
   #send back============================================================================================================
 
-  msg = "running"
-  clientsocket.send(msg.encode("utf-8"))
-  data1 = ('[%s] %s' % (ctime(),data.decode())).encode("utf-8")
-  clientsocket.send(data1)
+  if (name.decode("utf-8") = "get"):
+    clientsocket.send(msg.encode("utf-8"))
+  else:
+    clientsocket.send(name.encode("utf-8"))
+    msg = name
+
+  # data1 = ('[%s] %s' % (ctime(),data.decode())).encode("utf-8")
+  # clientsocket.send(data1)
   clientsocket.close()
   
 ServerSocket.close()
