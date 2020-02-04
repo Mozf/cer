@@ -196,6 +196,7 @@ while True:
   print(type(str(name1)))
   name2 = 'get'
   print(name2)
+  print(type(name2))
   if name1 == name2:
     print('yes')
   else:
