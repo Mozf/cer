@@ -196,7 +196,7 @@ while True:
   if (name == "get"):
     clientsocket.send(msg.encode("utf-8"))
   else:
-    clientsocket.send(name.encode("utf-8"))
+    clientsocket.send(name)
     msg = name
 
   # data1 = ('[%s] %s' % (ctime(),data.decode())).encode("utf-8")
