@@ -14,7 +14,8 @@ port = 5670
 ServerSocket.bind((host, port))#2001:da8:270:2018:f816:3eff:fe40:d788
 
 ServerSocket.listen(1)
-msg = "running"
+msg = 'running'
+print(type(msg))
 
 while True:
   clientsocket, addr = ServerSocket.accept()
