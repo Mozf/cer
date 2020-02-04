@@ -194,20 +194,20 @@ while True:
   if name.decode("utf-8") == 'get\n':
     app()
     if flag == 0:
-      clientsocket.send(msg.encode())
+      clientsocket.send(msg)
       print(msg)
     else:
       clientsocket.send(msg)
-      print('the odour is '+ msg)
+      print('the odour is '+ msg.encode())
     print('yes')
   elif name.decode("utf-8") == 'get':
     app()
     if flag == 0:
-      clientsocket.send(msg.encode())
+      clientsocket.send(msg)
       print(msg)
     else:
       clientsocket.send(msg)
-      print('the odour is '+ msg)
+      print('the odour is '+ msg.encode())
     print('yes')
   else:
     clientsocket.send(name)
