@@ -207,7 +207,7 @@ while True:
 
   #send back============================================================================================================
 
-  if name.decode("utf-8") == 'get':
+  if name.decode("utf-8") == 'get\n':
     clientsocket.send(msg.encode("utf-8"))
     print('yes')
   else:
