@@ -194,6 +194,8 @@ while True:
   name1 = name.decode("utf-8")
   print(name1)
   print(type(name1))
+  name2 = 'get'
+  print(name2)
 
   print('Send successfully')
 
