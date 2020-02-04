@@ -196,6 +196,10 @@ while True:
   print(type(name1))
   name2 = 'get'
   print(name2)
+  if name1 == name2:
+    print('yes')
+  else:
+    print('no')
 
   print('Send successfully')
 
