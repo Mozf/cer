@@ -193,7 +193,7 @@ while True:
 
   if name.decode("utf-8") == 'get\n':
     app()
-    if flag = 0:
+    if flag == 0:
       clientsocket.send(msg.encode())
       print(msg)
     else:
@@ -202,7 +202,7 @@ while True:
     print('yes')
   elif name.decode("utf-8") == 'get':
     app()
-    if flag = 0:
+    if flag == 0:
       clientsocket.send(msg.encode())
       print(msg)
     else:
