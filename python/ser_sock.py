@@ -3,27 +3,7 @@ import sys
 import random
 from time import ctime
 
-ServerSocket = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
-print("Done.....1")
-
-host = "2001:da8:270:2018:f816:3eff:fe40:d788"
-print('my host : {}'.format(host))
-
-port = 5670
-
-ServerSocket.bind((host, port))#2001:da8:270:2018:f816:3eff:fe40:d788
-
-ServerSocket.listen(1)
-msg = 'running'
-print(type(msg))
-
-while True:
-  clientsocket, addr = ServerSocket.accept()
-  print("addr is :%s" % str(addr))
-
-  #random========================================================================================================
-  name = data = clientsocket.recv(1024)
-
+def app:
   print('input data...')
 
   for i in range(118):
@@ -190,12 +170,34 @@ while True:
 
   print('the odour is '+ name.decode("utf-8"))
 
+ServerSocket = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
+print("Done.....1")
+
+host = "2001:da8:270:2018:f816:3eff:fe40:d788"
+print('my host : {}'.format(host))
+
+port = 5670
+
+ServerSocket.bind((host, port))#2001:da8:270:2018:f816:3eff:fe40:d788
+
+ServerSocket.listen(1)
+msg = 'running'
+print(type(msg))
+
+while True:
+  clientsocket, addr = ServerSocket.accept()
+  print("addr is :%s" % str(addr))
+
+  name = data = clientsocket.recv(1024)
+
   #send back============================================================================================================
 
   if name.decode("utf-8") == 'get\n':
+    app
     clientsocket.send(msg.encode("utf-8"))
     print('yes')
   elif name.decode("utf-8") == 'get':
+    app
     clientsocket.send(msg)
     print('yes')
   else:
