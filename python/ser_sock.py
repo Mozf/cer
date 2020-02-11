@@ -208,6 +208,8 @@ while True:
       clientsocket.send(msg)
       print('the odour is '+ msg.decode())
     print('yes')
+  elif name.decode("utf-8") >= '0' & name.decode("utf-8") <= '100':
+    pass
   else:
     clientsocket.send(name)
     print('no')

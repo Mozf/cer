@@ -1,22 +1,26 @@
 import socket
 import sys
+import serial
 
-s = socket.socket(socket.AF_INET6,socket.SOCK_STREAM)
+ser = serial.Serial(port='COM4', baudrate=115200)
+data = ''
 
-host = "2001:da8:270:2018:f816:3eff:fe40:d788"
+while True:
 
-port = 5670
+  data = ser.readline()
+  data = data.decode()[:len(data)-2]
+  print(data)
+  s = socket.socket(socket.AF_INET6,socket.SOCK_STREAM)
 
-s.connect((host,port))
+  host = "2001:da8:270:2018:f816:3eff:fe40:d788"
 
+  port = 5670
+  s.connect((host,port))
+  s.send(data.encode("utf-8"))
 
-msg2 = "banana"
-s.send(msg2.encode("utf-8"))
+  msg = s.recv(1024)
 
-msg = s.recv(1024)
-msg3 = s.recv(1024)
+  s.close()
 
-s.close()
+  print(msg.decode("utf-8"))
 
-print(msg.decode("utf-8"))
-print(msg3.decode("utf-8"))
