@@ -208,7 +208,7 @@ while True:
       clientsocket.send(msg)
       print('the odour is '+ msg.decode())
     print('yes')
-  elif '100\n' >= name.decode("utf-8") >= '0\n':
+  elif name.decode("utf-8").isdigit():
     print("big")
   else:
     clientsocket.send(name)
