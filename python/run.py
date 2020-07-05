@@ -48,6 +48,7 @@ while True:
       print('the odour is '+ msg.decode()[1:])
     print('Send successfully')
     flag = 0
+    msg = 'awaite'
 
   elif name.decode("utf-8").isdigit():
     pass
