@@ -68,5 +68,6 @@ while True:
 
   if data.decode("utf-8").isdigit():
     print(data)
+    clientsocket1.close()
   
 ServerSocket.close()
