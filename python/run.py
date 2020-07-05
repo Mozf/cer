@@ -45,7 +45,6 @@ while True:
       data1 = file.readlines()
       for i in range(60):
         time.sleep(1)
-        
         print(data1[i*8 : i*8+8])
         print('getting the data...', i)
       app()

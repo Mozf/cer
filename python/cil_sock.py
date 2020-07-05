@@ -8,7 +8,8 @@ data = ''
 while True:
 
   data = ser.readline()
-  data = data.decode()[:len(data)-2]
+  print(data)
+  data = data.decode()[:len(data)-2]#
   print(data, flush = True)
   s = socket.socket(socket.AF_INET6,socket.SOCK_STREAM)
 

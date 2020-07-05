@@ -14,15 +14,17 @@ print('my host : {}'.format(host))
 
 port = 8088
 
-ServerSocket.bind((host, port))#2001:da8:270:2018:f816:3eff:fe40:d788
 
-ServerSocket.listen(1)
 
 
 while True:
 
+ 
+
   file = open(r'data.txt', 'w')
   for i in range(60*8):
+    ServerSocket.bind((host, port))#2001:da8:270:2018:f816:3eff:fe40:d788
+    ServerSocket.listen(1)
     clientsocket, addr = ServerSocket.accept()
     # print("addr is :%s" % str(addr))
 
@@ -35,4 +37,4 @@ while True:
     clientsocket.close()
     print(1)
   
-ServerSocket.close()
+    ServerSocket.close()
