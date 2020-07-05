@@ -6,9 +6,6 @@ from model import app
 import time
 import os
 
-file = open(r"data.txt", "r")
-
-
 ServerSocket = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
 print("Done.....1")
 
@@ -40,15 +37,17 @@ while True:
       print('the odour is '+ msg.decode()[1:])
     print('Send successfully')
 
-  if name.decode("utf-8") == 'get':
+  elif name.decode("utf-8") == 'get':
     if flag == 0:
       clientsocket.send(msg.encode())
     else:
+      file = open(r"data.txt", "r")
+      data1 = file.readlines()
       for i in range(60):
         time.sleep(1)
-        data1 = file.readlines()
+        
         print(data1[i*8 : i*8+8])
-        print('getting the data...', i, data1)
+        print('getting the data...', i)
       app()
       clientsocket.send(msg)
       print('the odour is '+ msg.decode()[1:])
@@ -56,8 +55,6 @@ while True:
     flag = 0
     msg = 'awaite'
 
-  if name.decode("utf-8").isdigit():
-    pass
   else:
     clientsocket.send(name)
     flag = 1
