@@ -17,7 +17,7 @@ port = 5670
 ServerSocket.bind((host, port))#2001:da8:270:2018:f816:3eff:fe40:d788
 
 ServerSocket.listen(1)
-msg = 'awaite'
+msg = 'azero'
 flag = 0
 
 while True:
@@ -40,6 +40,10 @@ while True:
 
   elif name.decode("utf-8") == 'get':
     if flag == 0:
+      for i in range(60):
+        time.sleep(1)
+        print('getting the data...', i)
+      app()
       clientsocket.send(msg.encode())
     else:
       for i in range(60):
@@ -50,7 +54,7 @@ while True:
       print('the odour is '+ msg.decode()[1:])
     print('Send successfully')
     flag = 0
-    msg = 'awaite'
+    msg = 'azero'
 
   elif name.decode("utf-8").isdigit():
     pass
