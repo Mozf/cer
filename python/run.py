@@ -51,7 +51,7 @@ while True:
         print('getting the data...', i)
       app()
       clientsocket.send(msg)
-      print('the odour is '+ msg.decode()[1:])
+    print('the odour is '+ msg.decode()[1:])
     print('Send successfully')
     flag = 0
     msg = 'azero'
