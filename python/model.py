@@ -183,14 +183,14 @@ def app():
       c = a*b
       d = a+b
 
-  print('conv2d_1...')
+  print('conv1d_1...')
       
   for i in range(118*9):
     e = random.randint(-100,100)
     if(e < 0):
       e = 0
 
-  print('activation function_1...') 
+  # print('activation function_1...') 
 
   for i in range(118*9):
     f = random.randint(0,100)
@@ -218,14 +218,14 @@ def app():
       c = a*b
       d = a+b
 
-  print('conv2d_2...')
+  print('conv1p_2...')
       
   for i in range(118*9):
     e = random.randint(-100,100)
     if(e < 0):
       e = 0
 
-  print('activation function_2...') 
+  # print('activation function_2...') 
 
   for i in range(118*9):
     f = random.randint(0,100)
@@ -260,7 +260,7 @@ def app():
     if(e < 0):
       e = 0
 
-  print('activation function_3...') 
+  # print('activation function_3...') 
 
   for i in range(118*9):
     f = random.randint(0,100)
@@ -288,14 +288,14 @@ def app():
       c = a*b
       d = a+b
 
-  print('conv2d_4...')
+  print('conv2p_4...')
       
   for i in range(118*9):
     e = random.randint(-100,100)
     if(e < 0):
       e = 0
 
-  print('activation function_4...') 
+  # print('activation function_4...') 
 
   for i in range(118*9):
     f = random.randint(0,100)
@@ -337,3 +337,12 @@ def app():
       w = r * w
 
   print('linear_2...')
+
+  for i in range(118*9):
+    f = random.randint(0,100)
+    g = random.randint(1,100)
+    h = f*g
+    r = f+g+h
+    for i in range(10):
+      w = random.randint(0,100)
+      w = r * w
