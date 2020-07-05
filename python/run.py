@@ -3,6 +3,7 @@ import sys
 import random
 from time import ctime
 from model import app
+import time
 # def app():
 #   print('input data...')
 
@@ -203,6 +204,9 @@ while True:
     if flag == 0:
       clientsocket.send(msg.encode())
     else:
+      for i in range(60):
+        time.sleep(1)
+        print('getting the data...', i)
       app()
       clientsocket.send(msg)
       print('the odour is '+ msg.decode()[1:])
