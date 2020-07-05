@@ -20,16 +20,19 @@ ServerSocket.listen(1)
 
 
 while True:
-  clientsocket, addr = ServerSocket.accept()
-  # print("addr is :%s" % str(addr))
 
-  name = clientsocket.recv(1024)
   file = open(r'data.txt', 'w')
-  if name.decode("utf-8").isdigit():
-    file.write(name.decode("utf-8") + '\n')
-    print(name)
+  for i in range(60*8):
+    clientsocket, addr = ServerSocket.accept()
+    # print("addr is :%s" % str(addr))
 
-  clientsocket.close()
-  print(1)
+    name = clientsocket.recv(1024)
+    
+    if name.decode("utf-8").isdigit():
+      file.write(name.decode("utf-8") + '\n')
+      print(name)
+
+    clientsocket.close()
+    print(1)
   
 ServerSocket.close()
