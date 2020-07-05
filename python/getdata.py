@@ -27,7 +27,7 @@ while True:
   name = clientsocket.recv(1024)
 
   if name.decode("utf-8").isdigit():
-    fileint.write(name.decode("utf-8") + '\n')
+    file.write(name.decode("utf-8") + '\n')
 
   clientsocket.close()
   

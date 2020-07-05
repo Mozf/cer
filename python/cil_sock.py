@@ -14,7 +14,7 @@ while True:
 
   host = "2001:da8:270:2018:f816:3eff:fe40:d788"
 
-  port = 5670
+  port = 8088
   s.connect((host,port))
   s.send(data.encode("utf-8"))
 
