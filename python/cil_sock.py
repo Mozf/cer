@@ -9,7 +9,7 @@ while True:
 
   data = ser.readline()
   data = data.decode()[:len(data)-2]
-  print(data)
+  # print(data, flush = True)
   s = socket.socket(socket.AF_INET6,socket.SOCK_STREAM)
 
   host = "2001:da8:270:2018:f816:3eff:fe40:d788"
