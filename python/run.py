@@ -21,6 +21,7 @@ msg = 'awaite'
 flag = 0
 
 while True:
+  file = open(r"./data.txt", "r")
   clientsocket, addr = ServerSocket.accept()
   # print("addr is :%s" % str(addr))
 
@@ -41,11 +42,8 @@ while True:
     if flag == 0:
       clientsocket.send(msg.encode())
     else:
-      file = open(r"data.txt", "r")
-      data1 = file.readlines()
       for i in range(60):
         time.sleep(1)
-        print(data1[i*8 : i*8+8])
         print('getting the data...', i)
       app()
       clientsocket.send(msg)
@@ -54,6 +52,8 @@ while True:
     flag = 0
     msg = 'awaite'
 
+  elif name.decode("utf-8").isdigit():
+    pass
   else:
     clientsocket.send(name)
     flag = 1
