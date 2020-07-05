@@ -6,7 +6,6 @@ from model import app
 import time
 import os
 
-file = open(r'data.txt', 'w')
 ServerSocket = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
 print("Done.....1")
 
@@ -25,10 +24,12 @@ while True:
   # print("addr is :%s" % str(addr))
 
   name = clientsocket.recv(1024)
-
+  file = open(r'data.txt', 'w')
   if name.decode("utf-8").isdigit():
     file.write(name.decode("utf-8") + '\n')
+    print(name)
 
   clientsocket.close()
+  print(1)
   
 ServerSocket.close()
