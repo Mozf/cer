@@ -48,7 +48,8 @@ while True:
     else:
       for i in range(60):
         time.sleep(1)
-        print('getting the data...', i)
+        data1 = file.readlines()
+        print('getting the data...', i, data1)
       app()
       clientsocket.send(msg)
       print('the odour is '+ msg.decode()[1:])
