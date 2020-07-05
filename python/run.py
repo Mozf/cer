@@ -43,7 +43,7 @@ while True:
       for i in range(60):
         time.sleep(1)
         print('getting the data...', i)
-        clientsocket.send(str(i).decode())
+        clientsocket.send(str(i))
       app()
       clientsocket.send(msg)
       print('the odour is '+ msg.decode()[1:])
