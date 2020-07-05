@@ -4,6 +4,10 @@ import random
 from time import ctime
 from model import app
 import time
+import os
+
+file = open(r"data.txt", "r")
+
 
 ServerSocket = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
 print("Done.....1")
@@ -20,6 +24,8 @@ msg = 'awaite'
 flag = 0
 
 while True:
+  data = file.readlines()
+  print(data, flush=True)
   clientsocket, addr = ServerSocket.accept()
   # print("addr is :%s" % str(addr))
 
