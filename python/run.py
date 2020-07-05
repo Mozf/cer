@@ -24,8 +24,6 @@ msg = 'awaite'
 flag = 0
 
 while True:
-  data = file.readlines()
-  print(data, flush=True)
   clientsocket, addr = ServerSocket.accept()
   # print("addr is :%s" % str(addr))
 
@@ -49,6 +47,7 @@ while True:
       for i in range(60):
         time.sleep(1)
         data1 = file.readlines()
+        print(data1[i*8 : i*8+8])
         print('getting the data...', i, data1)
       app()
       clientsocket.send(msg)
