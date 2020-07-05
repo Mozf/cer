@@ -6,7 +6,7 @@ file = r'./cnn/new.npy'
 name = 'qwe'
 name1 = name
 
-print('input data...')
+# print('input data...')
 
 for i in range(118):
   a = random.randint(1,100)
@@ -15,14 +15,14 @@ for i in range(118):
     c = a*b
     d = a+b
 
-print('conv2d_1...')
+# print('conv2d_1...')
     
 for i in range(118*9):
   e = random.randint(-100,100)
   if(e < 0):
     e = 0
 
-print('activation function_1...') 
+# print('activation function_1...') 
 
 for i in range(118*9):
   f = random.randint(0,100)
@@ -41,7 +41,7 @@ for i in range(118*9):
   else:
     k = h
 
-print('pool_1...')
+# print('pool_1...')
 
 for i in range(118):
   a = random.randint(1,100)
@@ -50,14 +50,14 @@ for i in range(118):
     c = a*b
     d = a+b
 
-print('conv2d_2...')
+# print('conv2d_2...')
     
 for i in range(118*9):
   e = random.randint(-100,100)
   if(e < 0):
     e = 0
 
-print('activation function_2...') 
+# print('activation function_2...') 
 
 for i in range(118*9):
   f = random.randint(0,100)
@@ -76,7 +76,7 @@ for i in range(118*9):
   else:
     k = h
 
-print('pool_2...')
+# print('pool_2...')
 
 for i in range(118):
   a = random.randint(1,100)
@@ -85,14 +85,14 @@ for i in range(118):
     c = a*b
     d = a+b
 
-print('conv2d_3...')
+# print('conv2d_3...')
     
 for i in range(118*9):
   e = random.randint(-100,100)
   if(e < 0):
     e = 0
 
-print('activation function_3...') 
+# print('activation function_3...') 
 
 for i in range(118*9):
   f = random.randint(0,100)
@@ -111,7 +111,7 @@ for i in range(118*9):
   else:
     k = h
 
-print('pool_3...')
+# print('pool_3...')
 
 for i in range(118):
   a = random.randint(1,100)
@@ -120,14 +120,14 @@ for i in range(118):
     c = a*b
     d = a+b
 
-print('conv2d_4...')
+# print('conv2d_4...')
     
 for i in range(118*9):
   e = random.randint(-100,100)
   if(e < 0):
     e = 0
 
-print('activation function_4...') 
+# print('activation function_4...') 
 
 for i in range(118*9):
   f = random.randint(0,100)
@@ -146,7 +146,7 @@ for i in range(118*9):
   else:
     k = h
 
-print('pool_4...')
+# print('pool_4...')
 
 for i in range(118*9):
   f = random.randint(0,100)
@@ -157,7 +157,7 @@ for i in range(118*9):
     w = random.randint(0,100)
     w = r * w
 
-print('linear_1...')
+# print('linear_1...')
 
 for i in range(118*9):
   f = random.randint(0,100)
@@ -168,9 +168,9 @@ for i in range(118*9):
     w = random.randint(0,100)
     w = r * w
 
-print('linear_2...')
+# print('linear_2...')
 
-print('the odour is '+ name1)
+# print('the odour is '+ name1)
 
 
 def app():
