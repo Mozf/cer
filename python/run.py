@@ -19,9 +19,10 @@ ServerSocket.bind((host, port))#2001:da8:270:2018:f816:3eff:fe40:d788
 ServerSocket.listen(1)
 msg = 'azero'
 flag = 0
+file = open(r"./data.txt", "r")
 
 while True:
-  file = open(r"./data.txt", "r")
+  
   clientsocket, addr = ServerSocket.accept()
   # print("addr is :%s" % str(addr))
 
