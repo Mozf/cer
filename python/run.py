@@ -40,14 +40,14 @@ while True:
 
   elif name.decode("utf-8") == 'get':
     if flag == 0:
-      for i in range(20):
+      for i in range(120):
         time.sleep(1)
         print('getting the data...', i)
       app()
       clientsocket.send(msg.encode())
       print('the odour is '+ msg[1:])
     else:
-      for i in range(20):
+      for i in range(120):
         time.sleep(1)
         print('getting the data...', i)
       app()
