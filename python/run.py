@@ -20,8 +20,8 @@ ServerSocket.listen(1)
 msg = 'azero'
 flag = 0
 file = open(r"./data.txt", "r")
-data = []
 i = 0
+data = i
 while True:
 
   if i > 120:
@@ -64,7 +64,7 @@ while True:
     msg = 'azero'
 
   elif name.decode("utf-8").isdigit():
-    data[i].append(name.decode("utf-8"))
+    data = i
   else:
     clientsocket.send(name)
     flag = 1
