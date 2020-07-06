@@ -64,8 +64,7 @@ while True:
     msg = 'azero'
 
   elif name.decode("utf-8").isdigit():
-    print(name.decode("utf-8"))
-    print(type(name.decode("utf-8")))
+    data[i] = name.decode("utf-8")
   else:
     clientsocket.send(name)
     flag = 1
