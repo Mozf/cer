@@ -20,8 +20,14 @@ ServerSocket.listen(1)
 msg = 'azero'
 flag = 0
 file = open(r"./data.txt", "r")
-
+data = []
+i = 0
 while True:
+
+  if i > 120:
+    i = 1
+  else:
+    i += 1
   clientsocket, addr = ServerSocket.accept()
   # print("addr is :%s" % str(addr))
 
@@ -42,15 +48,15 @@ while True:
     if flag == 0:
       for i in range(120):
         time.sleep(1)
-        print('getting the data...', i)
-      app()
+        print("wait {}s...".format(i))
+      app(data)
       clientsocket.send(msg.encode())
       print('the odour is '+ msg[1:])
     else:
       for i in range(120):
         time.sleep(1)
         print('getting the data...', i)
-      app()
+      app(data)
       clientsocket.send(msg)
       print('the odour is '+ msg.decode()[1:])
     print('Send successfully')
@@ -58,7 +64,7 @@ while True:
     msg = 'azero'
 
   elif name.decode("utf-8").isdigit():
-    pass
+    data[i] = name.decode("utf-8").isdigit()
   else:
     clientsocket.send(name)
     flag = 1

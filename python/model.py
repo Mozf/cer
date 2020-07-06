@@ -6,7 +6,7 @@ file = r'./cnn/new.npy'
 name = 'qwe'
 name1 = name
 
-def app():
+def app(data):
   print('input data...(8, 1, 20)')
 
   for i in range(118):
