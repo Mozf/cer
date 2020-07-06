@@ -22,7 +22,7 @@ flag = 0
 file = open(r"./data.txt", "r")
 
 while True:
-  
+  print(msg)
   clientsocket, addr = ServerSocket.accept()
   # print("addr is :%s" % str(addr))
 
@@ -41,7 +41,7 @@ while True:
 
   elif name.decode("utf-8") == 'get':
     if flag == 0:
-      for i in range(60):
+      for i in range(30):
         time.sleep(1)
         print('getting the data...', i)
       app()
