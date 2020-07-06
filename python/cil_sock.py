@@ -22,9 +22,6 @@ while True:
   s.connect((host,port))
   s.send(data.encode("utf-8"))
 
-  msg = s.recv(1024)
+  # msg = s.recv(1024)
 
   s.close()
-
-  print(msg.decode("utf-8"))
-
