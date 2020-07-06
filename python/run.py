@@ -55,7 +55,7 @@ while True:
     else:
       for i in range(120):
         time.sleep(1)
-        print('getting the data...', i)
+        print("wait {}s...".format(i))
       app(data)
       clientsocket.send(msg)
       print('the odour is '+ msg.decode()[1:])
