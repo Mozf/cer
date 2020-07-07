@@ -9,7 +9,6 @@ while True:
 
   data = ser.readline()
   data = data.decode()[:len(data)-2]#
-
   if flag:
     print('ready to sending data', flush = True)
     flag = 0
