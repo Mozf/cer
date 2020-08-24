@@ -1,33 +1,34 @@
 #include <stdio.h>
 #include <string.h>
-int fun(char const * ptr,int j)
+#define MAXN 20
+
+bool palindrome( char *s )
 {
-    if(j>50) 
-    {
-        return 0;
-    }
-   int i;
-    i=0;
-    while(i<j)
-    {
-        printf("%c\n",ptr[j]);
-        if(ptr[i]!=ptr[j])
-        {
-            return 0;
-        }
-        i++;
-        j--;
-    }
-    return 1;
+    bool b = true; 
+    char *p;
+    p = s;
+    p = s + strlen(s) - 1;
+    while(s < p )
+    {
+        if(*p != *s)
+        {
+            b = false;
+            break;
+        }
+        p--;
+        s++;
+    }
+    return b;
 }
 
-int main(int argc, char const *argv[])
+int main()
 {
-    char ch[50];
-    printf("please input character\n");
-    scanf("%s",ch);
-    int len;
-    len=strlen(ch)-1;
-    printf("%d\n",fun(ch,len));
-    return 0;
+    char s[MAXN];
+    scanf("%s", s);
+    if ( palindrome(s)==true )
+        printf("true\n");
+    else
+        printf("false\n");
+    
+    return 0;
 }
