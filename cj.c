@@ -2,6 +2,7 @@
 #include <string.h>
 #define MAXN 20
 
+bool palindrome( char *s );
 bool palindrome( char *s )
 {
     bool b = true; 
